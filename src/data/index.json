@@ -1,3 +1,59 @@
 {
-  "message": "Hello World!"
+  "banners": ["@img/banners/1.webp", "@img/banners/1.webp", "@img/banners/1.webp", "@img/banners/1.webp", "@img/banners/1.webp"],
+  "roomIdeas": [
+    {
+      "title": "Stylish home for young family",
+      "subtitle": "12 Items",
+      "image": "@img/room-ideas/1.webp"
+    },
+    {
+      "title": "The beauty of simplicity",
+      "subtitle": "3 Items",
+      "image": "@img/room-ideas/2.webp"
+    },
+    {
+      "title": "Sleep tight in traditional style",
+      "subtitle": "8 Items",
+      "image": "@img/room-ideas/3.webp"
+    },
+    {
+      "title": "Traditional yet luxurious design",
+      "subtitle": "6 Items",
+      "image": "@img/room-ideas/4.webp"
+    }
+  ],
+  "rooms": [
+    {
+      "name": "Bedroom",
+      "image": "@img/rooms/bedroom.webp"
+    },
+    {
+      "name": "Living room",
+      "image": "@img/rooms/living-room.webp"
+    },
+    {
+      "name": "Dining room",
+      "image": "@img/rooms/dining-room.webp"
+    },
+    {
+      "name": "Kitchen",
+      "image": "@img/rooms/kitchen.webp"
+    },
+    {
+      "name": "Bathroom",
+      "image": "@img/rooms/bathroom.webp"
+    },
+    {
+      "name": "Office",
+      "image": "@img/rooms/office.webp"
+    },
+    {
+      "name": "Outdoor",
+      "image": "@img/rooms/outdoor.webp"
+    },
+    {
+      "name": "Kids",
+      "image": "@img/rooms/kids.webp"
+    }
+  ]
 }

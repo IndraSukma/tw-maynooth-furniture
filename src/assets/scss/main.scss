@@ -1,3 +1,41 @@
 @tailwind base;
 @tailwind components;
+
+[x-cloak] {
+  display: none !important;
+}
+
+.swiper-pagination-bullet {
+  --swiper-pagination-bullet-horizontal-gap: 0.375rem;
+}
+
+.swiper-slide-prev-50,
+.swiper-slide-next-50 {
+  @apply md:opacity-50;
+}
+
+.swiper-thumbs .swiper-slide:not(.swiper-slide-thumb-active) {
+  @apply opacity-50;
+}
+
 @tailwind utilities;
+
+@layer base {
+  html {
+    @apply text-gray-950;
+  }
+
+  ::selection {
+    @apply bg-blue-950/90 text-white;
+  }
+
+  :focus-visible {
+    @apply outline-blue-950;
+  }
+}
+
+@layer utilities {
+  .icon-filled {
+    font-variation-settings: "FILL" 1, "wght" 700;
+  }
+}

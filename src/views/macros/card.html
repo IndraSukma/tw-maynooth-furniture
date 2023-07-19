@@ -1,0 +1,48 @@
+{% macro roomIdea(item) %}
+<a href="#" class="swiper-slide relative w-[87%] overflow-hidden rounded-xl md:w-[43.5%]">
+  <img src="{{ item.image }}" alt="{{ item.title }}" class="w-full object-cover" />
+  <div class="absolute inset-0 rounded-xl bg-gradient-to-b from-black/50 p-4 text-white">
+    <div class="mb-1 truncate text-base font-bold lg:text-xl">{{ item.title }}</div>
+    <div class="truncate text-xs lg:text-sm">{{ item.subtitle }}</div>
+  </div>
+</a>
+{% endmacro %}
+
+<!-- prettier-ignore -->
+{% macro room(item) %}
+<a href="#" class="swiper-slide relative w-2/5 overflow-hidden rounded-xl sm:w-1/5">
+  <img src="{{ item.image }}" alt="{{ item.name }}" class="w-full object-cover" />
+  <div class="absolute inset-0 flex flex-col rounded-xl bg-gradient-to-b from-black/50 px-4 pb-4 pt-3">
+    <div class="truncate text-sm font-bold text-white lg:text-base">{{ item.name }}</div>
+    <span class="material-symbols-rounded ml-auto mt-auto rounded-full bg-white p-2 text-base/4 lg:p-2.5 lg:text-xl/5">arrow_forward</span>
+  </div>
+</a>
+{% endmacro %}
+
+<!-- prettier-ignore -->
+{% macro product(item) %}
+<div class="relative flex flex-col rounded-xl border border-gray-200">
+  <button class="absolute right-3 top-3 rounded-full bg-white lg:right-4 lg:top-4">
+    <span class="{{ 'icon-filled text-red-950' if item.isLiked }} material-symbols-rounded p-2 text-base/4 lg:p-2.5 lg:text-xl/5">favorite</span>
+  </button>
+  <a href="product-details.html">
+    <img src="{{ item.image }}" alt="{{ item.name }}" class="w-full rounded-t-xl" />
+  </a>
+  <a href="product-details.html" class="flex-auto px-3 pt-3 lg:px-4 lg:pt-4">
+    <span class="mb-2 block truncate text-sm font-bold lg:text-lg" title="{{ item.name }}">{{ item.name }}</span>
+    <div class="truncate text-xs font-bold lg:text-base">{{ item.price }}</div>
+    {% if item.hasDiscount %}
+    <div class="mb-1 flex items-center gap-1 lg:mb-2 lg:gap-2">
+      <div class="truncate text-xs font-medium text-gray-700 line-through lg:text-sm">{{ item.priceInitial }}</div>
+      <span class="rounded bg-green-200 px-1 py-0.5 text-xs font-bold text-green-950 lg:rounded-md lg:px-1.5 lg:text-sm">{{ item.discount }}</span>
+    </div>
+    {% endif %}
+  </a>
+  {% if item.hasRating %}
+  <a href="product-details.html" class="flex items-center gap-1 px-3 pb-3 lg:px-4 lg:pb-4">
+    <span class="icon-filled material-symbols-rounded text-base/4 text-yellow-950 lg:text-xl/5">star</span>
+    <span class="mt-0.5 text-xs/3 font-bold text-gray-700 lg:mt-0 lg:text-sm">{{ item.rating }}</span>
+  </a>
+  {% endif %}
+</div>
+{% endmacro %}

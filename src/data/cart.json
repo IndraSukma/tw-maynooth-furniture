@@ -1,0 +1,79 @@
+{
+  "products": [
+    {
+      "name": "Single Drawer Bedside Table",
+      "image": "@img/products/3.webp",
+      "hasDiscount": true,
+      "discount": "25%",
+      "priceInitial": "Rp 800.000",
+      "price": "Rp 600.000",
+      "selected": true,
+      "variant": {
+        "text": "White",
+        "color": "text-white"
+      }
+    },
+    {
+      "name": "Ceramic Cabinet",
+      "image": "@img/products/2.webp",
+      "hasDiscount": true,
+      "discount": "30%",
+      "priceInitial": "Rp 4.000.000",
+      "price": "Rp 2.800.000",
+      "selected": true,
+      "variant": {
+        "text": "Black",
+        "color": "text-black"
+      }
+    },
+    {
+      "name": "Wall Mounted Lamp",
+      "image": "@img/products/5.webp",
+      "hasDiscount": true,
+      "discount": "25%",
+      "priceInitial": "Rp 1.000.000",
+      "price": "Rp 750.000",
+      "selected": false,
+      "variant": {
+        "text": "Black",
+        "color": "text-black"
+      }
+    },
+    {
+      "name": "Classic Chair",
+      "image": "@img/products/9.webp",
+      "hasDiscount": true,
+      "discount": "20%",
+      "priceInitial": "Rp 2.000.000",
+      "price": "Rp 1.600.000",
+      "selected": false,
+      "variant": {
+        "text": "White",
+        "color": "text-white"
+      }
+    }
+  ],
+  "summary": [
+    {
+      "label": "Total products",
+      "value": "3 items"
+    },
+    {
+      "label": "Total weight",
+      "value": "120 kg"
+    },
+    {
+      "label": "Subtotal",
+      "value": "Rp 5.600.000"
+    },
+    {
+      "label": "Total discount",
+      "value": "-Rp 1.600.000"
+    },
+    {
+      "label": "Total price",
+      "value": "Rp 4.000.000"
+    }
+  ],
+  "paymentMethod": "Gopay"
+}

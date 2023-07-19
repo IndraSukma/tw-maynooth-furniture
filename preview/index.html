@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Maynooth Furniture</title>
+    <link rel="shortcut icon" href="assets/img/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,600..700,0..1,0" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+    <script defer src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
+    <link rel="stylesheet" href="assets/css/main.min.css" />
+    <script defer src="assets/js/main.min.js"></script>
+
+    <script defer src="assets/js/index.min.js"></script>
+  </head>
+  <body>
+    <header x-data="navbar" x-bind="navbar" :class="{'border-b border-gray-200': !navbarAtTop}" class="inset-x-0 top-0 z-10 bg-white lg:fixed">
+      <nav class="container flex items-center justify-between py-3 lg:py-5">
+        <a href="/" class="py-2">
+          <img src="assets/img/logo-full.svg" alt="Maynooth" height="24" width="156" />
+        </a>
+        <form action="#" autocomplete="off" class="relative hidden w-2/5 lg:block" x-data="modal">
+          <div class="relative z-40" x-data="{ keyword: '' }">
+            <span class="material-symbols-rounded absolute inset-y-0 left-0 flex items-center px-3 text-xl/5 text-gray-400">search</span>
+            <input type="text" name="search" placeholder="Search" class="w-full rounded-xl border border-gray-300 px-10 py-2" x-bind="modalTrigger" x-model="keyword" />
+            <button type="reset" class="absolute inset-y-0 right-0 flex items-center rounded-xl px-3" x-show="keyword.length > 0" x-cloak>
+              <span class="material-symbols-rounded text-xl/5 text-gray-600">close</span>
+            </button>
+          </div>
+          <div class="fixed left-0 top-0 z-20 h-screen w-full bg-black/30" x-bind="modalBackdrop" x-cloak x-transition.opacity.duration.300ms></div>
+          <div
+            x-bind="modalDialog"
+            x-cloak
+            x-transition:enter="transition-all duration-300"
+            x-transition:enter-start="-translate-y-12 opacity-0"
+            x-transition:enter-end="translate-y-0 opacity-100"
+            x-transition:leave="transition-all duration-300"
+            x-transition:leave-start="translate-y-0 opacity-100"
+            x-transition:leave-end="-translate-y-12 opacity-0"
+            class="absolute z-30 mt-3 w-full rounded-xl bg-white shadow-xl">
+            <div>
+              <div class="flex items-end justify-between px-5 pt-5 font-bold">
+                <h5 class="text-base">Search history</h5>
+                <button class="text-xs text-red-950">Clear all</button>
+              </div>
+              <div class="pb-3 pt-2">
+                <a href="#" class="flex items-center justify-between gap-2 py-2.5 pl-5 pr-4 text-gray-600 hover:bg-gray-100">
+                  <span class="flex-1 text-sm font-semibold">Sofa</span>
+
+                  <span class="material-symbols-rounded text-xl/5">close</span>
+                </a>
+
+                <a href="#" class="flex items-center justify-between gap-2 py-2.5 pl-5 pr-4 text-gray-600 hover:bg-gray-100">
+                  <span class="flex-1 text-sm font-semibold">Bed</span>
+
+                  <span class="material-symbols-rounded text-xl/5">close</span>
+                </a>
+
+                <a href="#" class="flex items-center justify-between gap-2 py-2.5 pl-5 pr-4 text-gray-600 hover:bg-gray-100">
+                  <span class="flex-1 text-sm font-semibold">Pillow</span>
+
+                  <span class="material-symbols-rounded text-xl/5">close</span>
+                </a>
+
+                <a href="#" class="flex items-center justify-between gap-2 py-2.5 pl-5 pr-4 text-gray-600 hover:bg-gray-100">
+                  <span class="flex-1 text-sm font-semibold">Table</span>
+
+                  <span class="material-symbols-rounded text-xl/5">close</span>
+                </a>
+
+                <a href="#" class="flex items-center justify-between gap-2 py-2.5 pl-5 pr-4 text-gray-600 hover:bg-gray-100">
+                  <span class="flex-1 text-sm font-semibold">Lamp</span>
+
+                  <span class="material-symbols-rounded text-xl/5">close</span>
+                </a>
+
+                <div class="text-center">
+                  <a href="#" class="my-2 inline-flex items-end gap-1 text-sm font-bold">
+                    <span class="mb-0.5 text-xs/3">View more</span>
+                    <span class="material-symbols-rounded text-base/4">expand_more</span>
+                  </a>
+                </div>
+              </div>
+              <div class="mx-5 border-t border-gray-200"></div>
+            </div>
+            <div class="px-5 pb-5 pt-4">
+              <h5 class="pb-5 text-base font-bold">Search sugestions</h5>
+              <div class="flex flex-wrap gap-2">
+                <a href="#" class="rounded-lg bg-gray-100 px-2.5 py-1.5 text-xs font-bold">Knife</a>
+
+                <a href="#" class="rounded-lg bg-gray-100 px-2.5 py-1.5 text-xs font-bold">Shoe racks</a>
+
+                <a href="#" class="rounded-lg bg-gray-100 px-2.5 py-1.5 text-xs font-bold">Bathroom mirror</a>
+
+                <a href="#" class="rounded-lg bg-gray-100 px-2.5 py-1.5 text-xs font-bold">Bed</a>
+
+                <a href="#" class="rounded-lg bg-gray-100 px-2.5 py-1.5 text-xs font-bold">Table lamp</a>
+
+                <a href="#" class="rounded-lg bg-gray-100 px-2.5 py-1.5 text-xs font-bold">Pillow</a>
+
+                <a href="#" class="rounded-lg bg-gray-100 px-2.5 py-1.5 text-xs font-bold">Bookshelf</a>
+
+                <a href="#" class="rounded-lg bg-gray-100 px-2.5 py-1.5 text-xs font-bold">Towel</a>
+
+                <a href="#" class="rounded-lg bg-gray-100 px-2.5 py-1.5 text-xs font-bold">Napkins</a>
+
+                <a href="#" class="rounded-lg bg-gray-100 px-2.5 py-1.5 text-xs font-bold">Clocks</a>
+
+                <a href="#" class="rounded-lg bg-gray-100 px-2.5 py-1.5 text-xs font-bold">Mirrors</a>
+              </div>
+            </div>
+          </div>
+        </form>
+        <div class="flex gap-3">
+          <a href="cart.html" class="relative hidden p-2.5 lg:flex">
+            <span class="material-symbols-rounded text-xl/5">shopping_cart</span>
+            <span class="absolute right-1.5 top-1.5 h-1.5 w-1.5 rounded-full bg-red-950"></span>
+          </a>
+          <a href="#" class="relative flex p-2.5 lg:hidden">
+            <span class="material-symbols-rounded text-xl/5">notifications</span>
+            <span class="absolute right-1.5 top-1.5 h-1.5 w-1.5 rounded-full bg-red-950"></span>
+          </a>
+          <div class="relative hidden lg:flex" x-data="dropdown">
+            <a href="#" class="relative flex p-2.5" x-bind="dropdownTrigger">
+              <span class="material-symbols-rounded text-xl/5">notifications</span>
+              <span class="absolute right-1.5 top-1.5 h-1.5 w-1.5 rounded-full bg-red-950"></span>
+            </a>
+            <div
+              x-bind="dropdownMenu"
+              x-cloak
+              x-transition:enter="transition-all duration-300"
+              x-transition:enter-start="-translate-y-6 opacity-0"
+              x-transition:enter-end="translate-y-0 opacity-100"
+              x-transition:leave="transition-all duration-300"
+              x-transition:leave-start="translate-y-0 opacity-100"
+              x-transition:leave-end="-translate-y-6 opacity-0"
+              class="absolute right-0 top-full z-30 mt-3 w-96 overflow-hidden rounded-xl bg-white shadow-xl">
+              <div class="border-b border-gray-200 px-5 pt-5">
+                <div class="flex items-center justify-between">
+                  <span class="text-base font-bold">Notifications</span>
+                  <a href="#" class="material-symbols-rounded text-xl/5">settings</a>
+                </div>
+                <div class="flex justify-around py-4">
+                  <a href="#" class="text-xs font-bold">All</a>
+                  <a href="#" class="text-xs font-bold text-gray-600">Orders</a>
+                  <a href="#" class="text-xs font-bold text-gray-600">Promotions</a>
+                  <a href="#" class="text-xs font-bold text-gray-600">Info</a>
+                </div>
+              </div>
+              <div class="h-96 overflow-y-auto py-2">
+                <ul>
+                  <li>
+                    <a href="#" class="flex items-start gap-3 px-5 py-3 hover:bg-gray-100">
+                      <div class="flex rounded-lg bg-green-100 p-2.5 text-green-950">
+                        <span class="material-symbols-rounded">sell</span>
+                      </div>
+
+                      <div class="flex-1">
+                        <div class="mb-1 flex justify-between text-xs text-gray-600">
+                          <span class="font-bold">Promotion</span>
+                          <span>21-12-2023 08:00</span>
+                        </div>
+                        <h5 class="mb-1 text-sm font-bold">Christmas sale up to 70% off</h5>
+                        <p class="line-clamp-2 text-xs/relaxed text-gray-600">Dictumst aliquam placerat praesent nibh. Id aenean mauris pulvinar adipiscing mi.</p>
+                      </div>
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="#" class="flex items-start gap-3 px-5 py-3 hover:bg-gray-100">
+                      <div class="flex rounded-lg bg-yellow-100 p-2.5 text-yellow-950">
+                        <span class="material-symbols-rounded">receipt_long</span>
+                      </div>
+
+                      <div class="flex-1">
+                        <div class="mb-1 flex justify-between text-xs text-gray-600">
+                          <span class="font-bold">Order</span>
+                          <span>20-12-2023 11:00</span>
+                        </div>
+                        <h5 class="mb-1 text-sm font-bold">Your order has arrived</h5>
+                        <p class="line-clamp-2 text-xs/relaxed text-gray-600">Vitae elit sem sit eget nulla elit. Lorem lobortis tincidunt egestas luctus diam arcu feugiat libero.</p>
+                      </div>
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="#" class="flex items-start gap-3 px-5 py-3 hover:bg-gray-100">
+                      <div class="flex rounded-lg bg-yellow-100 p-2.5 text-yellow-950">
+                        <span class="material-symbols-rounded">receipt_long</span>
+                      </div>
+
+                      <div class="flex-1">
+                        <div class="mb-1 flex justify-between text-xs text-gray-600">
+                          <span class="font-bold">Order</span>
+                          <span>20-12-2023 08:00</span>
+                        </div>
+                        <h5 class="mb-1 text-sm font-bold">Your order is being delivered</h5>
+                        <p class="line-clamp-2 text-xs/relaxed text-gray-600">Eu ac non at egestas. In faucibus convallis gravida diam metus tortor ut congue.</p>
+                      </div>
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="#" class="flex items-start gap-3 px-5 py-3 hover:bg-gray-100">
+                      <div class="flex rounded-lg bg-yellow-100 p-2.5 text-yellow-950">
+                        <span class="material-symbols-rounded">receipt_long</span>
+                      </div>
+
+                      <div class="flex-1">
+                        <div class="mb-1 flex justify-between text-xs text-gray-600">
+                          <span class="font-bold">Order</span>
+                          <span>20-12-2023 07:00</span>
+                        </div>
+                        <h5 class="mb-1 text-sm font-bold">Your order is ready to be delivered</h5>
+                        <p class="line-clamp-2 text-xs/relaxed text-gray-600">Faucibus consequat enim donec nec. Elit venenatis sagittis a aliquam.</p>
+                      </div>
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="#" class="flex items-start gap-3 px-5 py-3 hover:bg-gray-100">
+                      <div class="flex rounded-lg bg-yellow-100 p-2.5 text-yellow-950">
+                        <span class="material-symbols-rounded">receipt_long</span>
+                      </div>
+
+                      <div class="flex-1">
+                        <div class="mb-1 flex justify-between text-xs text-gray-600">
+                          <span class="font-bold">Order</span>
+                          <span>19-12-2023 16:00</span>
+                        </div>
+                        <h5 class="mb-1 text-sm font-bold">Your order is being prepared</h5>
+                        <p class="line-clamp-2 text-xs/relaxed text-gray-600">Consequat interdum nunc amet tellus adipiscing dui turpis. Feugiat id lacus vel egestas id turpis.</p>
+                      </div>
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="#" class="flex items-start gap-3 px-5 py-3 hover:bg-gray-100">
+                      <div class="flex rounded-lg bg-green-100 p-2.5 text-green-950">
+                        <span class="material-symbols-rounded">sell</span>
+                      </div>
+
+                      <div class="flex-1">
+                        <div class="mb-1 flex justify-between text-xs text-gray-600">
+                          <span class="font-bold">Promotion</span>
+                          <span>05-10-2023 12:00</span>
+                        </div>
+                        <h5 class="mb-1 text-sm font-bold">25% special discount just for you</h5>
+                        <p class="line-clamp-2 text-xs/relaxed text-gray-600">Sapien vel vel egestas ut. Nisl semper vitae egestas interdum.</p>
+                      </div>
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="#" class="flex items-start gap-3 px-5 py-3 hover:bg-gray-100">
+                      <div class="flex rounded-lg bg-blue-100 p-2.5 text-blue-950">
+                        <span class="material-symbols-rounded">info</span>
+                      </div>
+
+                      <div class="flex-1">
+                        <div class="mb-1 flex justify-between text-xs text-gray-600">
+                          <span class="font-bold">Info</span>
+                          <span>24-09-2023 10:00</span>
+                        </div>
+                        <h5 class="mb-1 text-sm font-bold">Complete your profile</h5>
+                        <p class="line-clamp-2 text-xs/relaxed text-gray-600">Arcu congue in in vitae sed adipiscing. Ultricies fermentum nisl proin sapien senectus.</p>
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="relative hidden lg:flex" x-data="dropdown">
+            <a href="#" class="ml-2.5" x-bind="dropdownTrigger">
+              <img src="assets/img/users/1.webp" alt="Ronald Richards" height="40" width="40" class="rounded-full" />
+            </a>
+            <div
+              x-bind="dropdownMenu"
+              x-cloak
+              x-transition:enter="transition-all duration-300"
+              x-transition:enter-start="-translate-y-6 opacity-0"
+              x-transition:enter-end="translate-y-0 opacity-100"
+              x-transition:leave="transition-all duration-300"
+              x-transition:leave-start="translate-y-0 opacity-100"
+              x-transition:leave-end="-translate-y-6 opacity-0"
+              class="absolute right-0 top-full z-30 mt-3 w-96 rounded-xl bg-white shadow-xl">
+              <div class="mx-5 mt-5 flex items-center gap-4 border-b border-gray-200 pb-5 font-bold">
+                <img src="assets/img/users/1.webp" alt="Ronald Richards" height="48" width="48" class="rounded-full" />
+                <div>
+                  <h5 class="text-lg/6">Ronald Richards</h5>
+                  <a href="#" class="text-xs text-blue-950">Edit profile</a>
+                </div>
+              </div>
+              <ul class="py-2.5">
+                <li>
+                  <a href="#" class="flex items-center justify-between gap-2 py-2.5 pl-5 pr-4 hover:bg-gray-100">
+                    <span class="material-symbols-rounded text-xl/5">receipt_long</span>
+
+                    <span class="flex-1 text-sm font-semibold">Orders</span>
+
+                    <span class="text-xs font-semibold text-gray-600"></span>
+
+                    <span class="material-symbols-rounded text-xl/5">chevron_right</span>
+                  </a>
+
+                  <ul class="mx-5 mb-2.5 flex justify-around border-b border-gray-200 pb-5 pt-2.5">
+                    <li>
+                      <a href="#" class="flex flex-col items-center gap-1 text-gray-600">
+                        <span class="material-symbols-rounded text-xl/5">account_balance_wallet</span>
+                        <span class="flex-1 text-xs font-semibold">Top pay</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" class="flex flex-col items-center gap-1 text-gray-600">
+                        <span class="material-symbols-rounded text-xl/5">package</span>
+                        <span class="flex-1 text-xs font-semibold">To ship</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" class="flex flex-col items-center gap-1 text-gray-600">
+                        <span class="material-symbols-rounded text-xl/5">local_shipping</span>
+                        <span class="flex-1 text-xs font-semibold">To receive</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" class="flex flex-col items-center gap-1 text-gray-600">
+                        <span class="material-symbols-rounded text-xl/5">star</span>
+                        <span class="flex-1 text-xs font-semibold">To rate</span>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+
+                <li>
+                  <a href="#" class="flex items-center justify-between gap-2 py-2.5 pl-5 pr-4 hover:bg-gray-100">
+                    <span class="material-symbols-rounded text-xl/5">favorite</span>
+
+                    <span class="flex-1 text-sm font-semibold">Wishlist</span>
+
+                    <span class="text-xs font-semibold text-gray-600">10 items</span>
+
+                    <span class="material-symbols-rounded text-xl/5">chevron_right</span>
+                  </a>
+                </li>
+
+                <li>
+                  <a href="#" class="flex items-center justify-between gap-2 py-2.5 pl-5 pr-4 hover:bg-gray-100">
+                    <span class="material-symbols-rounded text-xl/5">star</span>
+
+                    <span class="flex-1 text-sm font-semibold">Reviews</span>
+
+                    <span class="text-xs font-semibold text-gray-600"></span>
+
+                    <span class="material-symbols-rounded text-xl/5">chevron_right</span>
+                  </a>
+                </li>
+
+                <li>
+                  <a href="#" class="flex items-center justify-between gap-2 py-2.5 pl-5 pr-4 hover:bg-gray-100">
+                    <span class="material-symbols-rounded text-xl/5">history</span>
+
+                    <span class="flex-1 text-sm font-semibold">Recently viewed</span>
+
+                    <span class="text-xs font-semibold text-gray-600"></span>
+
+                    <span class="material-symbols-rounded text-xl/5">chevron_right</span>
+                  </a>
+                </li>
+
+                <li>
+                  <div class="mx-5 my-2.5 border-t border-gray-200"></div>
+                </li>
+
+                <li>
+                  <a href="#" class="flex items-center justify-between gap-2 py-2.5 pl-5 pr-4 hover:bg-gray-100">
+                    <span class="material-symbols-rounded text-xl/5">settings</span>
+
+                    <span class="flex-1 text-sm font-semibold">Account settings</span>
+
+                    <span class="text-xs font-semibold text-gray-600"></span>
+
+                    <span class="material-symbols-rounded text-xl/5">chevron_right</span>
+                  </a>
+                </li>
+
+                <li>
+                  <a href="#" class="flex items-center justify-between gap-2 py-2.5 pl-5 pr-4 hover:bg-gray-100">
+                    <span class="material-symbols-rounded text-xl/5">help</span>
+
+                    <span class="flex-1 text-sm font-semibold">Help center</span>
+
+                    <span class="text-xs font-semibold text-gray-600"></span>
+
+                    <span class="material-symbols-rounded text-xl/5">chevron_right</span>
+                  </a>
+                </li>
+
+                <li>
+                  <a href="#" class="mx-5 my-2.5 flex justify-center gap-2 rounded-xl border border-gray-200 py-2.5">
+                    <span class="material-symbols-rounded text-xl/5">logout</span>
+                    <span class="text-sm font-bold">Logout</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="overflow-x-hidden pb-16 lg:pt-20">
+      <div id="main-banner" class="swiper group mb-8 mt-1 px-6 lg:mb-16 lg:mt-11 lg:px-0">
+        <div class="swiper-wrapper">
+          <a href="#" class="swiper-slide w-full md:w-2/3">
+            <img src="assets/img/banners/1.webp" alt="Banner 1" class="aspect-video w-full rounded-xl object-cover md:aspect-[21/9]" />
+          </a>
+
+          <a href="#" class="swiper-slide w-full md:w-2/3">
+            <img src="assets/img/banners/1.webp" alt="Banner 2" class="aspect-video w-full rounded-xl object-cover md:aspect-[21/9]" />
+          </a>
+
+          <a href="#" class="swiper-slide w-full md:w-2/3">
+            <img src="assets/img/banners/1.webp" alt="Banner 3" class="aspect-video w-full rounded-xl object-cover md:aspect-[21/9]" />
+          </a>
+
+          <a href="#" class="swiper-slide w-full md:w-2/3">
+            <img src="assets/img/banners/1.webp" alt="Banner 4" class="aspect-video w-full rounded-xl object-cover md:aspect-[21/9]" />
+          </a>
+
+          <a href="#" class="swiper-slide w-full md:w-2/3">
+            <img src="assets/img/banners/1.webp" alt="Banner 5" class="aspect-video w-full rounded-xl object-cover md:aspect-[21/9]" />
+          </a>
+        </div>
+
+        <div class="absolute inset-x-0 top-1/2 z-10 mx-auto flex h-0 -translate-y-1/2 items-center justify-between md:w-2/3">
+          <div class="swiper-prev hidden h-10 rounded-full bg-gray-950 p-2.5 text-white transition-all duration-300 xl:flex xl:opacity-0 xl:group-hover:-ml-5 xl:group-hover:opacity-100">
+            <span class="material-symbols-rounded text-xl/5">arrow_back</span>
+          </div>
+          <div class="swiper-next hidden h-10 rounded-full bg-gray-950 p-2.5 text-white transition-all duration-300 xl:flex xl:opacity-0 xl:group-hover:-mr-5 xl:group-hover:opacity-100">
+            <span class="material-symbols-rounded text-xl/5">arrow_forward</span>
+          </div>
+        </div>
+
+        <div class="swiper-pagination"></div>
+      </div>
+
+      <div class="container">
+        <div class="mb-8 lg:mb-16">
+          <div class="mb-4 flex items-end justify-between lg:mb-6">
+            <h5 class="text-base font-bold lg:text-xl">Room ideas</h5>
+            <a href="#" class="inline-flex items-center text-xs font-bold lg:gap-1 lg:text-sm">
+              <span class="lg:mb-0.5">View more</span>
+              <span class="material-symbols-rounded text-base/4 lg:text-xl/5">chevron_right</span>
+            </a>
+          </div>
+          <div id="room-ideas" class="swiper mb-8 overflow-visible rounded-xl lg:mb-16">
+            <div class="swiper-wrapper">
+              <a href="#" class="swiper-slide relative w-[87%] overflow-hidden rounded-xl md:w-[43.5%]">
+                <img src="assets/img/room-ideas/1.webp" alt="Stylish home for young family" class="w-full object-cover" />
+                <div class="absolute inset-0 rounded-xl bg-gradient-to-b from-black/50 p-4 text-white">
+                  <div class="mb-1 truncate text-base font-bold lg:text-xl">Stylish home for young family</div>
+                  <div class="truncate text-xs lg:text-sm">12 Items</div>
+                </div>
+              </a>
+
+              <a href="#" class="swiper-slide relative w-[87%] overflow-hidden rounded-xl md:w-[43.5%]">
+                <img src="assets/img/room-ideas/2.webp" alt="The beauty of simplicity" class="w-full object-cover" />
+                <div class="absolute inset-0 rounded-xl bg-gradient-to-b from-black/50 p-4 text-white">
+                  <div class="mb-1 truncate text-base font-bold lg:text-xl">The beauty of simplicity</div>
+                  <div class="truncate text-xs lg:text-sm">3 Items</div>
+                </div>
+              </a>
+
+              <a href="#" class="swiper-slide relative w-[87%] overflow-hidden rounded-xl md:w-[43.5%]">
+                <img src="assets/img/room-ideas/3.webp" alt="Sleep tight in traditional style" class="w-full object-cover" />
+                <div class="absolute inset-0 rounded-xl bg-gradient-to-b from-black/50 p-4 text-white">
+                  <div class="mb-1 truncate text-base font-bold lg:text-xl">Sleep tight in traditional style</div>
+                  <div class="truncate text-xs lg:text-sm">8 Items</div>
+                </div>
+              </a>
+
+              <a href="#" class="swiper-slide relative w-[87%] overflow-hidden rounded-xl md:w-[43.5%]">
+                <img src="assets/img/room-ideas/4.webp" alt="Traditional yet luxurious design" class="w-full object-cover" />
+                <div class="absolute inset-0 rounded-xl bg-gradient-to-b from-black/50 p-4 text-white">
+                  <div class="mb-1 truncate text-base font-bold lg:text-xl">Traditional yet luxurious design</div>
+                  <div class="truncate text-xs lg:text-sm">6 Items</div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="mb-8 lg:mb-16">
+          <h5 class="mb-4 text-base font-bold lg:mb-6 lg:text-xl">Shop by room</h5>
+          <div id="rooms" class="swiper mb-8 overflow-visible rounded-xl lg:mb-16">
+            <div class="swiper-wrapper">
+              <a href="#" class="swiper-slide relative w-2/5 overflow-hidden rounded-xl sm:w-1/5">
+                <img src="assets/img/rooms/bedroom.webp" alt="Bedroom" class="w-full object-cover" />
+                <div class="absolute inset-0 flex flex-col rounded-xl bg-gradient-to-b from-black/50 px-4 pb-4 pt-3">
+                  <div class="truncate text-sm font-bold text-white lg:text-base">Bedroom</div>
+                  <span class="material-symbols-rounded ml-auto mt-auto rounded-full bg-white p-2 text-base/4 lg:p-2.5 lg:text-xl/5">arrow_forward</span>
+                </div>
+              </a>
+
+              <a href="#" class="swiper-slide relative w-2/5 overflow-hidden rounded-xl sm:w-1/5">
+                <img src="assets/img/rooms/living-room.webp" alt="Living room" class="w-full object-cover" />
+                <div class="absolute inset-0 flex flex-col rounded-xl bg-gradient-to-b from-black/50 px-4 pb-4 pt-3">
+                  <div class="truncate text-sm font-bold text-white lg:text-base">Living room</div>
+                  <span class="material-symbols-rounded ml-auto mt-auto rounded-full bg-white p-2 text-base/4 lg:p-2.5 lg:text-xl/5">arrow_forward</span>
+                </div>
+              </a>
+
+              <a href="#" class="swiper-slide relative w-2/5 overflow-hidden rounded-xl sm:w-1/5">
+                <img src="assets/img/rooms/dining-room.webp" alt="Dining room" class="w-full object-cover" />
+                <div class="absolute inset-0 flex flex-col rounded-xl bg-gradient-to-b from-black/50 px-4 pb-4 pt-3">
+                  <div class="truncate text-sm font-bold text-white lg:text-base">Dining room</div>
+                  <span class="material-symbols-rounded ml-auto mt-auto rounded-full bg-white p-2 text-base/4 lg:p-2.5 lg:text-xl/5">arrow_forward</span>
+                </div>
+              </a>
+
+              <a href="#" class="swiper-slide relative w-2/5 overflow-hidden rounded-xl sm:w-1/5">
+                <img src="assets/img/rooms/kitchen.webp" alt="Kitchen" class="w-full object-cover" />
+                <div class="absolute inset-0 flex flex-col rounded-xl bg-gradient-to-b from-black/50 px-4 pb-4 pt-3">
+                  <div class="truncate text-sm font-bold text-white lg:text-base">Kitchen</div>
+                  <span class="material-symbols-rounded ml-auto mt-auto rounded-full bg-white p-2 text-base/4 lg:p-2.5 lg:text-xl/5">arrow_forward</span>
+                </div>
+              </a>
+
+              <a href="#" class="swiper-slide relative w-2/5 overflow-hidden rounded-xl sm:w-1/5">
+                <img src="assets/img/rooms/bathroom.webp" alt="Bathroom" class="w-full object-cover" />
+                <div class="absolute inset-0 flex flex-col rounded-xl bg-gradient-to-b from-black/50 px-4 pb-4 pt-3">
+                  <div class="truncate text-sm font-bold text-white lg:text-base">Bathroom</div>
+                  <span class="material-symbols-rounded ml-auto mt-auto rounded-full bg-white p-2 text-base/4 lg:p-2.5 lg:text-xl/5">arrow_forward</span>
+                </div>
+              </a>
+
+              <a href="#" class="swiper-slide relative w-2/5 overflow-hidden rounded-xl sm:w-1/5">
+                <img src="assets/img/rooms/office.webp" alt="Office" class="w-full object-cover" />
+                <div class="absolute inset-0 flex flex-col rounded-xl bg-gradient-to-b from-black/50 px-4 pb-4 pt-3">
+                  <div class="truncate text-sm font-bold text-white lg:text-base">Office</div>
+                  <span class="material-symbols-rounded ml-auto mt-auto rounded-full bg-white p-2 text-base/4 lg:p-2.5 lg:text-xl/5">arrow_forward</span>
+                </div>
+              </a>
+
+              <a href="#" class="swiper-slide relative w-2/5 overflow-hidden rounded-xl sm:w-1/5">
+                <img src="assets/img/rooms/outdoor.webp" alt="Outdoor" class="w-full object-cover" />
+                <div class="absolute inset-0 flex flex-col rounded-xl bg-gradient-to-b from-black/50 px-4 pb-4 pt-3">
+                  <div class="truncate text-sm font-bold text-white lg:text-base">Outdoor</div>
+                  <span class="material-symbols-rounded ml-auto mt-auto rounded-full bg-white p-2 text-base/4 lg:p-2.5 lg:text-xl/5">arrow_forward</span>
+                </div>
+              </a>
+
+              <a href="#" class="swiper-slide relative w-2/5 overflow-hidden rounded-xl sm:w-1/5">
+                <img src="assets/img/rooms/kids.webp" alt="Kids" class="w-full object-cover" />
+                <div class="absolute inset-0 flex flex-col rounded-xl bg-gradient-to-b from-black/50 px-4 pb-4 pt-3">
+                  <div class="truncate text-sm font-bold text-white lg:text-base">Kids</div>
+                  <span class="material-symbols-rounded ml-auto mt-auto rounded-full bg-white p-2 text-base/4 lg:p-2.5 lg:text-xl/5">arrow_forward</span>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h5 class="mb-4 text-base font-bold lg:mb-6 lg:text-xl">Recommended for you</h5>
+          <div class="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-4">
+            <div class="relative flex flex-col rounded-xl border border-gray-200">
+              <button class="absolute right-3 top-3 rounded-full bg-white lg:right-4 lg:top-4">
+                <span class="icon-filled material-symbols-rounded p-2 text-base/4 text-red-950 lg:p-2.5 lg:text-xl/5">favorite</span>
+              </button>
+              <a href="product-details.html">
+                <img src="assets/img/products/1.webp" alt="Wooden Side Table" class="w-full rounded-t-xl" />
+              </a>
+              <a href="product-details.html" class="flex-auto px-3 pt-3 lg:px-4 lg:pt-4">
+                <span class="mb-2 block truncate text-sm font-bold lg:text-lg" title="Wooden Side Table">Wooden Side Table</span>
+                <div class="truncate text-xs font-bold lg:text-base">Rp 1.500.000</div>
+
+                <div class="mb-1 flex items-center gap-1 lg:mb-2 lg:gap-2">
+                  <div class="truncate text-xs font-medium text-gray-700 line-through lg:text-sm">Rp 2.000.000</div>
+                  <span class="rounded bg-green-200 px-1 py-0.5 text-xs font-bold text-green-950 lg:rounded-md lg:px-1.5 lg:text-sm">25%</span>
+                </div>
+              </a>
+
+              <a href="product-details.html" class="flex items-center gap-1 px-3 pb-3 lg:px-4 lg:pb-4">
+                <span class="icon-filled material-symbols-rounded text-base/4 text-yellow-950 lg:text-xl/5">star</span>
+                <span class="mt-0.5 text-xs/3 font-bold text-gray-700 lg:mt-0 lg:text-sm">5.0</span>
+              </a>
+            </div>
+
+            <div class="relative flex flex-col rounded-xl border border-gray-200">
+              <button class="absolute right-3 top-3 rounded-full bg-white lg:right-4 lg:top-4">
+                <span class="material-symbols-rounded p-2 text-base/4 lg:p-2.5 lg:text-xl/5">favorite</span>
+              </button>
+              <a href="product-details.html">
+                <img src="assets/img/products/2.webp" alt="Ceramic Cabinet" class="w-full rounded-t-xl" />
+              </a>
+              <a href="product-details.html" class="flex-auto px-3 pt-3 lg:px-4 lg:pt-4">
+                <span class="mb-2 block truncate text-sm font-bold lg:text-lg" title="Ceramic Cabinet">Ceramic Cabinet</span>
+                <div class="truncate text-xs font-bold lg:text-base">Rp 2.800.000</div>
+
+                <div class="mb-1 flex items-center gap-1 lg:mb-2 lg:gap-2">
+                  <div class="truncate text-xs font-medium text-gray-700 line-through lg:text-sm">Rp 4.000.000</div>
+                  <span class="rounded bg-green-200 px-1 py-0.5 text-xs font-bold text-green-950 lg:rounded-md lg:px-1.5 lg:text-sm">30%</span>
+                </div>
+              </a>
+
+              <a href="product-details.html" class="flex items-center gap-1 px-3 pb-3 lg:px-4 lg:pb-4">
+                <span class="icon-filled material-symbols-rounded text-base/4 text-yellow-950 lg:text-xl/5">star</span>
+                <span class="mt-0.5 text-xs/3 font-bold text-gray-700 lg:mt-0 lg:text-sm">4.8</span>
+              </a>
+            </div>
+
+            <div class="relative flex flex-col rounded-xl border border-gray-200">
+              <button class="absolute right-3 top-3 rounded-full bg-white lg:right-4 lg:top-4">
+                <span class="material-symbols-rounded p-2 text-base/4 lg:p-2.5 lg:text-xl/5">favorite</span>
+              </button>
+              <a href="product-details.html">
+                <img src="assets/img/products/3.webp" alt="Single Drawer Bedside Table" class="w-full rounded-t-xl" />
+              </a>
+              <a href="product-details.html" class="flex-auto px-3 pt-3 lg:px-4 lg:pt-4">
+                <span class="mb-2 block truncate text-sm font-bold lg:text-lg" title="Single Drawer Bedside Table">Single Drawer Bedside Table</span>
+                <div class="truncate text-xs font-bold lg:text-base">Rp 600.000</div>
+
+                <div class="mb-1 flex items-center gap-1 lg:mb-2 lg:gap-2">
+                  <div class="truncate text-xs font-medium text-gray-700 line-through lg:text-sm">Rp 800.000</div>
+                  <span class="rounded bg-green-200 px-1 py-0.5 text-xs font-bold text-green-950 lg:rounded-md lg:px-1.5 lg:text-sm">25%</span>
+                </div>
+              </a>
+
+              <a href="product-details.html" class="flex items-center gap-1 px-3 pb-3 lg:px-4 lg:pb-4">
+                <span class="icon-filled material-symbols-rounded text-base/4 text-yellow-950 lg:text-xl/5">star</span>
+                <span class="mt-0.5 text-xs/3 font-bold text-gray-700 lg:mt-0 lg:text-sm">4.8</span>
+              </a>
+            </div>
+
+            <div class="relative flex flex-col rounded-xl border border-gray-200">
+              <button class="absolute right-3 top-3 rounded-full bg-white lg:right-4 lg:top-4">
+                <span class="icon-filled material-symbols-rounded p-2 text-base/4 text-red-950 lg:p-2.5 lg:text-xl/5">favorite</span>
+              </button>
+              <a href="product-details.html">
+                <img src="assets/img/products/4.webp" alt="Double Drawer Bedside Table" class="w-full rounded-t-xl" />
+              </a>
+              <a href="product-details.html" class="flex-auto px-3 pt-3 lg:px-4 lg:pt-4">
+                <span class="mb-2 block truncate text-sm font-bold lg:text-lg" title="Double Drawer Bedside Table">Double Drawer Bedside Table</span>
+                <div class="truncate text-xs font-bold lg:text-base">Rp 900.000</div>
+
+                <div class="mb-1 flex items-center gap-1 lg:mb-2 lg:gap-2">
+                  <div class="truncate text-xs font-medium text-gray-700 line-through lg:text-sm">Rp 1.500.000</div>
+                  <span class="rounded bg-green-200 px-1 py-0.5 text-xs font-bold text-green-950 lg:rounded-md lg:px-1.5 lg:text-sm">40%</span>
+                </div>
+              </a>
+
+              <a href="product-details.html" class="flex items-center gap-1 px-3 pb-3 lg:px-4 lg:pb-4">
+                <span class="icon-filled material-symbols-rounded text-base/4 text-yellow-950 lg:text-xl/5">star</span>
+                <span class="mt-0.5 text-xs/3 font-bold text-gray-700 lg:mt-0 lg:text-sm">5.0</span>
+              </a>
+            </div>
+
+            <div class="relative flex flex-col rounded-xl border border-gray-200">
+              <button class="absolute right-3 top-3 rounded-full bg-white lg:right-4 lg:top-4">
+                <span class="material-symbols-rounded p-2 text-base/4 lg:p-2.5 lg:text-xl/5">favorite</span>
+              </button>
+              <a href="product-details.html">
+                <img src="assets/img/products/5.webp" alt="Wall Mounted Lamp" class="w-full rounded-t-xl" />
+              </a>
+              <a href="product-details.html" class="flex-auto px-3 pt-3 lg:px-4 lg:pt-4">
+                <span class="mb-2 block truncate text-sm font-bold lg:text-lg" title="Wall Mounted Lamp">Wall Mounted Lamp</span>
+                <div class="truncate text-xs font-bold lg:text-base">Rp 750.000</div>
+
+                <div class="mb-1 flex items-center gap-1 lg:mb-2 lg:gap-2">
+                  <div class="truncate text-xs font-medium text-gray-700 line-through lg:text-sm">Rp 1.000.000</div>
+                  <span class="rounded bg-green-200 px-1 py-0.5 text-xs font-bold text-green-950 lg:rounded-md lg:px-1.5 lg:text-sm">25%</span>
+                </div>
+              </a>
+
+              <a href="product-details.html" class="flex items-center gap-1 px-3 pb-3 lg:px-4 lg:pb-4">
+                <span class="icon-filled material-symbols-rounded text-base/4 text-yellow-950 lg:text-xl/5">star</span>
+                <span class="mt-0.5 text-xs/3 font-bold text-gray-700 lg:mt-0 lg:text-sm">4.9</span>
+              </a>
+            </div>
+
+            <div class="relative flex flex-col rounded-xl border border-gray-200">
+              <button class="absolute right-3 top-3 rounded-full bg-white lg:right-4 lg:top-4">
+                <span class="material-symbols-rounded p-2 text-base/4 lg:p-2.5 lg:text-xl/5">favorite</span>
+              </button>
+              <a href="product-details.html">
+                <img src="assets/img/products/6.webp" alt="Wooden Coffee Table" class="w-full rounded-t-xl" />
+              </a>
+              <a href="product-details.html" class="flex-auto px-3 pt-3 lg:px-4 lg:pt-4">
+                <span class="mb-2 block truncate text-sm font-bold lg:text-lg" title="Wooden Coffee Table">Wooden Coffee Table</span>
+                <div class="truncate text-xs font-bold lg:text-base">Rp 1.400.000</div>
+
+                <div class="mb-1 flex items-center gap-1 lg:mb-2 lg:gap-2">
+                  <div class="truncate text-xs font-medium text-gray-700 line-through lg:text-sm">Rp 2.000.000</div>
+                  <span class="rounded bg-green-200 px-1 py-0.5 text-xs font-bold text-green-950 lg:rounded-md lg:px-1.5 lg:text-sm">30%</span>
+                </div>
+              </a>
+
+              <a href="product-details.html" class="flex items-center gap-1 px-3 pb-3 lg:px-4 lg:pb-4">
+                <span class="icon-filled material-symbols-rounded text-base/4 text-yellow-950 lg:text-xl/5">star</span>
+                <span class="mt-0.5 text-xs/3 font-bold text-gray-700 lg:mt-0 lg:text-sm">4.8</span>
+              </a>
+            </div>
+
+            <div class="relative flex flex-col rounded-xl border border-gray-200">
+              <button class="absolute right-3 top-3 rounded-full bg-white lg:right-4 lg:top-4">
+                <span class="material-symbols-rounded p-2 text-base/4 lg:p-2.5 lg:text-xl/5">favorite</span>
+              </button>
+              <a href="product-details.html">
+                <img src="assets/img/products/7.webp" alt="Solid Wood Coffee Table" class="w-full rounded-t-xl" />
+              </a>
+              <a href="product-details.html" class="flex-auto px-3 pt-3 lg:px-4 lg:pt-4">
+                <span class="mb-2 block truncate text-sm font-bold lg:text-lg" title="Solid Wood Coffee Table">Solid Wood Coffee Table</span>
+                <div class="truncate text-xs font-bold lg:text-base">Rp 2.550.000</div>
+
+                <div class="mb-1 flex items-center gap-1 lg:mb-2 lg:gap-2">
+                  <div class="truncate text-xs font-medium text-gray-700 line-through lg:text-sm">Rp 3.000.000</div>
+                  <span class="rounded bg-green-200 px-1 py-0.5 text-xs font-bold text-green-950 lg:rounded-md lg:px-1.5 lg:text-sm">15%</span>
+                </div>
+              </a>
+
+              <a href="product-details.html" class="flex items-center gap-1 px-3 pb-3 lg:px-4 lg:pb-4">
+                <span class="icon-filled material-symbols-rounded text-base/4 text-yellow-950 lg:text-xl/5">star</span>
+                <span class="mt-0.5 text-xs/3 font-bold text-gray-700 lg:mt-0 lg:text-sm">4.9</span>
+              </a>
+            </div>
+
+            <div class="relative flex flex-col rounded-xl border border-gray-200">
+              <button class="absolute right-3 top-3 rounded-full bg-white lg:right-4 lg:top-4">
+                <span class="material-symbols-rounded p-2 text-base/4 lg:p-2.5 lg:text-xl/5">favorite</span>
+              </button>
+              <a href="product-details.html">
+                <img src="assets/img/products/8.webp" alt="Long Dining Table" class="w-full rounded-t-xl" />
+              </a>
+              <a href="product-details.html" class="flex-auto px-3 pt-3 lg:px-4 lg:pt-4">
+                <span class="mb-2 block truncate text-sm font-bold lg:text-lg" title="Long Dining Table">Long Dining Table</span>
+                <div class="truncate text-xs font-bold lg:text-base">Rp 2.800.000</div>
+
+                <div class="mb-1 flex items-center gap-1 lg:mb-2 lg:gap-2">
+                  <div class="truncate text-xs font-medium text-gray-700 line-through lg:text-sm">Rp 4.000.000</div>
+                  <span class="rounded bg-green-200 px-1 py-0.5 text-xs font-bold text-green-950 lg:rounded-md lg:px-1.5 lg:text-sm">30%</span>
+                </div>
+              </a>
+
+              <a href="product-details.html" class="flex items-center gap-1 px-3 pb-3 lg:px-4 lg:pb-4">
+                <span class="icon-filled material-symbols-rounded text-base/4 text-yellow-950 lg:text-xl/5">star</span>
+                <span class="mt-0.5 text-xs/3 font-bold text-gray-700 lg:mt-0 lg:text-sm">4.8</span>
+              </a>
+            </div>
+
+            <div class="relative flex flex-col rounded-xl border border-gray-200">
+              <button class="absolute right-3 top-3 rounded-full bg-white lg:right-4 lg:top-4">
+                <span class="material-symbols-rounded p-2 text-base/4 lg:p-2.5 lg:text-xl/5">favorite</span>
+              </button>
+              <a href="product-details.html">
+                <img src="assets/img/products/9.webp" alt="Classic Chair" class="w-full rounded-t-xl" />
+              </a>
+              <a href="product-details.html" class="flex-auto px-3 pt-3 lg:px-4 lg:pt-4">
+                <span class="mb-2 block truncate text-sm font-bold lg:text-lg" title="Classic Chair">Classic Chair</span>
+                <div class="truncate text-xs font-bold lg:text-base">Rp 1.600.000</div>
+
+                <div class="mb-1 flex items-center gap-1 lg:mb-2 lg:gap-2">
+                  <div class="truncate text-xs font-medium text-gray-700 line-through lg:text-sm">Rp 2.000.000</div>
+                  <span class="rounded bg-green-200 px-1 py-0.5 text-xs font-bold text-green-950 lg:rounded-md lg:px-1.5 lg:text-sm">20%</span>
+                </div>
+              </a>
+
+              <a href="product-details.html" class="flex items-center gap-1 px-3 pb-3 lg:px-4 lg:pb-4">
+                <span class="icon-filled material-symbols-rounded text-base/4 text-yellow-950 lg:text-xl/5">star</span>
+                <span class="mt-0.5 text-xs/3 font-bold text-gray-700 lg:mt-0 lg:text-sm">4.6</span>
+              </a>
+            </div>
+
+            <div class="relative flex flex-col rounded-xl border border-gray-200">
+              <button class="absolute right-3 top-3 rounded-full bg-white lg:right-4 lg:top-4">
+                <span class="material-symbols-rounded p-2 text-base/4 lg:p-2.5 lg:text-xl/5">favorite</span>
+              </button>
+              <a href="product-details.html">
+                <img src="assets/img/products/10.webp" alt="Sofa Pillow" class="w-full rounded-t-xl" />
+              </a>
+              <a href="product-details.html" class="flex-auto px-3 pt-3 lg:px-4 lg:pt-4">
+                <span class="mb-2 block truncate text-sm font-bold lg:text-lg" title="Sofa Pillow">Sofa Pillow</span>
+                <div class="truncate text-xs font-bold lg:text-base">Rp 300.000</div>
+
+                <div class="mb-1 flex items-center gap-1 lg:mb-2 lg:gap-2">
+                  <div class="truncate text-xs font-medium text-gray-700 line-through lg:text-sm">Rp 600.000</div>
+                  <span class="rounded bg-green-200 px-1 py-0.5 text-xs font-bold text-green-950 lg:rounded-md lg:px-1.5 lg:text-sm">50%</span>
+                </div>
+              </a>
+
+              <a href="product-details.html" class="flex items-center gap-1 px-3 pb-3 lg:px-4 lg:pb-4">
+                <span class="icon-filled material-symbols-rounded text-base/4 text-yellow-950 lg:text-xl/5">star</span>
+                <span class="mt-0.5 text-xs/3 font-bold text-gray-700 lg:mt-0 lg:text-sm">5.0</span>
+              </a>
+            </div>
+
+            <div class="relative flex flex-col rounded-xl border border-gray-200">
+              <button class="absolute right-3 top-3 rounded-full bg-white lg:right-4 lg:top-4">
+                <span class="icon-filled material-symbols-rounded p-2 text-base/4 text-red-950 lg:p-2.5 lg:text-xl/5">favorite</span>
+              </button>
+              <a href="product-details.html">
+                <img src="assets/img/products/11.webp" alt="Clay Vase" class="w-full rounded-t-xl" />
+              </a>
+              <a href="product-details.html" class="flex-auto px-3 pt-3 lg:px-4 lg:pt-4">
+                <span class="mb-2 block truncate text-sm font-bold lg:text-lg" title="Clay Vase">Clay Vase</span>
+                <div class="truncate text-xs font-bold lg:text-base">Rp 150.000</div>
+
+                <div class="mb-1 flex items-center gap-1 lg:mb-2 lg:gap-2">
+                  <div class="truncate text-xs font-medium text-gray-700 line-through lg:text-sm">Rp 200.000</div>
+                  <span class="rounded bg-green-200 px-1 py-0.5 text-xs font-bold text-green-950 lg:rounded-md lg:px-1.5 lg:text-sm">25%</span>
+                </div>
+              </a>
+
+              <a href="product-details.html" class="flex items-center gap-1 px-3 pb-3 lg:px-4 lg:pb-4">
+                <span class="icon-filled material-symbols-rounded text-base/4 text-yellow-950 lg:text-xl/5">star</span>
+                <span class="mt-0.5 text-xs/3 font-bold text-gray-700 lg:mt-0 lg:text-sm">4.7</span>
+              </a>
+            </div>
+
+            <div class="relative flex flex-col rounded-xl border border-gray-200">
+              <button class="absolute right-3 top-3 rounded-full bg-white lg:right-4 lg:top-4">
+                <span class="material-symbols-rounded p-2 text-base/4 lg:p-2.5 lg:text-xl/5">favorite</span>
+              </button>
+              <a href="product-details.html">
+                <img src="assets/img/products/12.webp" alt="White Ceramic Vase" class="w-full rounded-t-xl" />
+              </a>
+              <a href="product-details.html" class="flex-auto px-3 pt-3 lg:px-4 lg:pt-4">
+                <span class="mb-2 block truncate text-sm font-bold lg:text-lg" title="White Ceramic Vase">White Ceramic Vase</span>
+                <div class="truncate text-xs font-bold lg:text-base">Rp 280.000</div>
+
+                <div class="mb-1 flex items-center gap-1 lg:mb-2 lg:gap-2">
+                  <div class="truncate text-xs font-medium text-gray-700 line-through lg:text-sm">Rp 400.000</div>
+                  <span class="rounded bg-green-200 px-1 py-0.5 text-xs font-bold text-green-950 lg:rounded-md lg:px-1.5 lg:text-sm">30%</span>
+                </div>
+              </a>
+
+              <a href="product-details.html" class="flex items-center gap-1 px-3 pb-3 lg:px-4 lg:pb-4">
+                <span class="icon-filled material-symbols-rounded text-base/4 text-yellow-950 lg:text-xl/5">star</span>
+                <span class="mt-0.5 text-xs/3 font-bold text-gray-700 lg:mt-0 lg:text-sm">4.9</span>
+              </a>
+            </div>
+          </div>
+          <div class="py-6 text-center lg:pb-0 lg:pt-12">
+            <a href="#" class="inline-flex items-center gap-1 font-bold">
+              <span class="mb-0.5 text-sm lg:text-base/4">View more</span>
+              <span class="material-symbols-rounded text-xl/5 lg:text-2xl/6">expand_more</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <nav class="fixed inset-x-0 bottom-0 z-10 border-t border-gray-200 bg-white lg:hidden">
+      <div class="container flex items-center justify-between py-3">
+        <a href="index.html" class="relative flex gap-1.5 rounded-full bg-gray-100 px-3.5 py-2.5">
+          <span class="icon-filled material-symbols-rounded text-xl/5">home</span>
+
+          <span class="text-sm font-bold capitalize">home</span>
+        </a>
+
+        <a href="" class="relative flex px-3.5 py-2.5">
+          <span class="material-symbols-rounded text-xl/5">search</span>
+        </a>
+
+        <a href="cart.html" class="relative flex px-3.5 py-2.5">
+          <span class="material-symbols-rounded text-xl/5">shopping_cart</span>
+
+          <span class="absolute right-1.5 top-1.5 h-1.5 w-1.5 rounded-full bg-red-950"></span>
+        </a>
+
+        <a href="" class="relative flex px-3.5 py-2.5">
+          <span class="material-symbols-rounded text-xl/5">favorite</span>
+        </a>
+
+        <a href="" class="relative flex px-3.5 py-2.5">
+          <span class="material-symbols-rounded text-xl/5">person</span>
+        </a>
+      </div>
+    </nav>
+
+    <footer class="hidden bg-gray-950 text-gray-300 lg:block">
+      <div class="container py-20">
+        <div class="flex gap-6">
+          <div class="flex w-5/12 gap-6">
+            <img src="assets/img/mockup-iphone.webp" alt="Maynooth App" width="144" class="h-auto" />
+            <div>
+              <h5 class="mb-5 text-xl font-semibold text-white">Download app</h5>
+              <p class="leading-7">
+                Curabitur sagittis viverra id gravida lectus morbi. Mattis facilisi integer volutpat tristique. Tempor hac molestie praesent hendrerit laoreet hac. Rutrum id feugiat facilisis odio.
+              </p>
+              <div class="mt-6 flex gap-3">
+                <a href="#">
+                  <img src="assets/img/btn-play-store.webp" alt="Google Play Store" height="40" width="135" />
+                </a>
+                <a href="#">
+                  <img src="assets/img/btn-app-store.webp" alt="Apple App Store" height="40" width="120" />
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-1 justify-center">
+            <div>
+              <h5 class="mb-5 text-xl font-semibold text-white">Services</h5>
+              <ul>
+                <li class="mb-4">
+                  <a href="#" class="text-gray-200 hover:text-white">Help center</a>
+                </li>
+                <li class="mb-4">
+                  <a href="#" class="text-gray-200 hover:text-white">Order tracking</a>
+                </li>
+                <li class="mb-4">
+                  <a href="#" class="text-gray-200 hover:text-white">Return & refund</a>
+                </li>
+                <li class="mb-4">
+                  <a href="#" class="text-gray-200 hover:text-white">Contact us</a>
+                </li>
+                <li class="mb-4">
+                  <a href="#" class="text-gray-200 hover:text-white">FAQ</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="flex flex-1 justify-center">
+            <div>
+              <h5 class="mb-5 text-xl font-semibold text-white">Maynooth</h5>
+              <ul>
+                <li class="mb-4">
+                  <a href="#" class="text-gray-200 hover:text-white">About us</a>
+                </li>
+                <li class="mb-4">
+                  <a href="#" class="text-gray-200 hover:text-white">Privacy policy</a>
+                </li>
+                <li class="mb-4">
+                  <a href="#" class="text-gray-200 hover:text-white">Terms & conditions</a>
+                </li>
+                <li class="mb-4">
+                  <a href="#" class="text-gray-200 hover:text-white">Career</a>
+                </li>
+                <li class="mb-4">
+                  <a href="#" class="text-gray-200 hover:text-white">Blog</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="flex flex-1 justify-center">
+            <div>
+              <h5 class="mb-5 text-xl font-semibold text-white">Follow us</h5>
+              <ul>
+                <li class="mb-4 flex">
+                  <a href="#" class="group inline-flex gap-3 text-gray-200 hover:text-white">
+                    <img src="assets/img/icons/facebook.svg" alt="Facebook" height="24" width="24" class="group-hover:brightness-200" />
+                    <span>Facebook</span>
+                  </a>
+                </li>
+                <li class="mb-4 flex">
+                  <a href="#" class="group inline-flex gap-3 text-gray-200 hover:text-white">
+                    <img src="assets/img/icons/instagram.svg" alt="Instagram" height="24" width="24" class="group-hover:brightness-200" />
+                    <span>Instagram</span>
+                  </a>
+                </li>
+                <li class="mb-4 flex">
+                  <a href="#" class="group inline-flex gap-3 text-gray-200 hover:text-white">
+                    <img src="assets/img/icons/twitter.svg" alt="Twitter" height="24" width="24" class="group-hover:brightness-200" />
+                    <span>Twitter</span>
+                  </a>
+                </li>
+                <li class="mb-4 flex">
+                  <a href="#" class="group inline-flex gap-3 text-gray-200 hover:text-white">
+                    <img src="assets/img/icons/youtube.svg" alt="YouTube" height="24" width="24" class="group-hover:brightness-200" />
+                    <span>YouTube</span>
+                  </a>
+                </li>
+                <li class="mb-4 flex">
+                  <a href="#" class="group inline-flex gap-3 text-gray-200 hover:text-white">
+                    <img src="assets/img/icons/tiktok.svg" alt="TikTok" height="24" width="24" class="group-hover:brightness-200" />
+                    <span>TikTok</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="mt-20 flex items-center justify-between">
+          <span class="text-sm">© 2023 Maynooth. All Rights Reserved.</span>
+          <div class="flex rounded-lg bg-white/10">
+            <button class="rounded-lg bg-white px-3 py-1.5 text-xs font-bold text-gray-950">English</button>
+            <button class="rounded-lg px-3 py-1.5 text-xs font-semibold text-white">Indonesia</button>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

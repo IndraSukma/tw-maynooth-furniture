@@ -1,0 +1,50 @@
+{% macro banner(id, items, hasPagination = true, hasControl = true) %}
+<div id="{{ id }}" class="swiper group mb-8 mt-1 px-6 lg:mb-16 lg:mt-11 lg:px-0">
+  <div class="swiper-wrapper">
+    {% for item in items %}
+    <a href="#" class="swiper-slide w-full md:w-2/3">
+      <img src="{{ item }}" alt="Banner {{ loop.index }}" class="aspect-video w-full rounded-xl object-cover md:aspect-[21/9]" />
+    </a>
+    {% endfor %}
+  </div>
+  {% if hasControl %}
+  <div class="absolute inset-x-0 top-1/2 z-10 mx-auto flex h-0 -translate-y-1/2 items-center justify-between md:w-2/3">
+    <div class="swiper-prev hidden h-10 rounded-full bg-gray-950 p-2.5 text-white transition-all duration-300 xl:flex xl:opacity-0 xl:group-hover:-ml-5 xl:group-hover:opacity-100">
+      <span class="material-symbols-rounded text-xl/5">arrow_back</span>
+    </div>
+    <div class="swiper-next hidden h-10 rounded-full bg-gray-950 p-2.5 text-white transition-all duration-300 xl:flex xl:opacity-0 xl:group-hover:-mr-5 xl:group-hover:opacity-100">
+      <span class="material-symbols-rounded text-xl/5">arrow_forward</span>
+    </div>
+  </div>
+  {% endif %}
+  <!-- prettier-ignore -->
+  {% if hasPagination %}
+  <div class="swiper-pagination"></div>
+  {% endif %}
+</div>
+{% endmacro %}
+
+<!-- prettier-ignore -->
+{% macro product(id, idThumbnail, items) %}
+<div class="flex gap-6 sm:h-[26rem] md:h-[32rem] lg:h-[26rem] xl:h-[32rem]">
+  <div id="{{ idThumbnail }}" class="swiper hidden flex-1 sm:block sm:rounded-xl">
+    <div class="swiper-wrapper">
+      {% for item in items %}
+      <img src="{{ item }}" alt="Thumbail {{ loop.index }}" class="swiper-slide aspect-square h-auto rounded-xl object-cover" />
+      {% endfor %}
+    </div>
+  </div>
+  <div id="{{ id }}" class="swiper sm:w-[26rem] sm:rounded-xl md:w-[32rem] lg:w-[26rem] xl:w-[32rem]">
+    <div class="swiper-wrapper">
+      {% for item in items %}
+      <div class="swiper-slide">
+        <div class="swiper-zoom-container">
+          <img src="{{ item }}" alt="Product {{ loop.index }}" class="aspect-square w-full object-cover sm:rounded-xl" />
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="swiper-pagination sm:hidden"></div>
+  </div>
+</div>
+{% endmacro %}

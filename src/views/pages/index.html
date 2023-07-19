@@ -1,6 +1,75 @@
 {% extends "layouts/main.html" %}
 
 <!-- prettier-ignore -->
+{% import "macros/nav.html" as nav %}
+{% import "macros/card.html" as card %}
+{% import "macros/carousel.html" as carousel %}
+
+<!-- prettier-ignore -->
+{% block headThirdParty %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+<script defer src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+{% endblock %}
+
+<!-- prettier-ignore -->
+{% block headCustom %}
+<script defer src="@script/index.js"></script>
+{% endblock %}
+
+<!-- prettier-ignore -->
 {% block content %}
-<h1 class="my-8 text-3xl font-bold">{{ message }}</h1>
+{{ nav.main() }}
+
+<main class="overflow-x-hidden pb-16 lg:pt-20">
+  {{ carousel.banner("main-banner", banners) }}
+  <div class="container">
+    <div class="mb-8 lg:mb-16">
+      <div class="mb-4 flex items-end justify-between lg:mb-6">
+        <h5 class="text-base font-bold lg:text-xl">Room ideas</h5>
+        <a href="#" class="inline-flex items-center text-xs font-bold lg:gap-1 lg:text-sm">
+          <span class="lg:mb-0.5">View more</span>
+          <span class="material-symbols-rounded text-base/4 lg:text-xl/5">chevron_right</span>
+        </a>
+      </div>
+      <div id="room-ideas" class="swiper mb-8 overflow-visible rounded-xl lg:mb-16">
+        <div class="swiper-wrapper">
+          <!-- prettier-ignore -->
+          {% for roomIdea in roomIdeas %} 
+            {{ card.roomIdea(roomIdea) }}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    <div class="mb-8 lg:mb-16">
+      <h5 class="mb-4 text-base font-bold lg:mb-6 lg:text-xl">Shop by room</h5>
+      <div id="rooms" class="swiper mb-8 overflow-visible rounded-xl lg:mb-16">
+        <div class="swiper-wrapper">
+          <!-- prettier-ignore -->
+          {% for room in rooms %}
+            {{ card.room(room) }}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    <div>
+      <h5 class="mb-4 text-base font-bold lg:mb-6 lg:text-xl">Recommended for you</h5>
+      <div class="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-4">
+        <!-- prettier-ignore -->
+        {% for product in global.products %}
+          {{ card.product(product) }}
+        {% endfor %}
+      </div>
+      <div class="py-6 text-center lg:pb-0 lg:pt-12">
+        <a href="#" class="inline-flex items-center gap-1 font-bold">
+          <span class="mb-0.5 text-sm lg:text-base/4">View more</span>
+          <span class="material-symbols-rounded text-xl/5 lg:text-2xl/6">expand_more</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- prettier-ignore -->
+{{ nav.mainBottom('home') }} 
+
 {% endblock %}

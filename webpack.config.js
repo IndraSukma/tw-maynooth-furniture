@@ -31,7 +31,7 @@ module.exports = (env, argv) => {
         directory: path.join(__dirname, "dist"),
       },
       watchFiles: {
-        paths: ["src/views/**/*.*", "src/assets/**/*.*"],
+        paths: ["src/views/**/*.*", "src/assets/**/*.*", "tailwind.config.js"],
         options: { usePolling: true },
       },
       historyApiFallback: {

@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Maynooth Furniture</title>
+    <link rel="shortcut icon" href="assets/img/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,600..700,0..1,0" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+    <script defer src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
+    <link rel="stylesheet" href="assets/css/main.min.css" />
+    <script defer src="assets/js/main.min.js"></script>
+
+    <script defer src="assets/js/product-details.min.js"></script>
+  </head>
+  <body>
+    <header x-data="navbar" x-bind="navbar" :class="{'border-b border-gray-200': !navbarAtTop}" class="inset-x-0 top-0 z-10 hidden bg-white lg:fixed lg:block">
+      <nav class="container flex items-center justify-between py-3 lg:py-5">
+        <a href="/" class="py-2">
+          <img src="assets/img/logo-full.svg" alt="Maynooth" height="24" width="156" />
+        </a>
+        <form action="#" autocomplete="off" class="relative hidden w-2/5 lg:block" x-data="modal">
+          <div class="relative z-40" x-data="{ keyword: '' }">
+            <span class="material-symbols-rounded absolute inset-y-0 left-0 flex items-center px-3 text-xl/5 text-gray-400">search</span>
+            <input type="text" name="search" placeholder="Search" class="w-full rounded-xl border border-gray-300 px-10 py-2" x-bind="modalTrigger" x-model="keyword" />
+            <button type="reset" class="absolute inset-y-0 right-0 flex items-center rounded-xl px-3" x-show="keyword.length > 0" x-cloak>
+              <span class="material-symbols-rounded text-xl/5 text-gray-600">close</span>
+            </button>
+          </div>
+          <div class="fixed left-0 top-0 z-20 h-screen w-full bg-black/30" x-bind="modalBackdrop" x-cloak x-transition.opacity.duration.300ms></div>
+          <div
+            x-bind="modalDialog"
+            x-cloak
+            x-transition:enter="transition-all duration-300"
+            x-transition:enter-start="-translate-y-12 opacity-0"
+            x-transition:enter-end="translate-y-0 opacity-100"
+            x-transition:leave="transition-all duration-300"
+            x-transition:leave-start="translate-y-0 opacity-100"
+            x-transition:leave-end="-translate-y-12 opacity-0"
+            class="absolute z-30 mt-3 w-full rounded-xl bg-white shadow-xl">
+            <div>
+              <div class="flex items-end justify-between px-5 pt-5 font-bold">
+                <h5 class="text-base">Search history</h5>
+                <button class="text-xs text-red-950">Clear all</button>
+              </div>
+              <div class="pb-3 pt-2">
+                <a href="#" class="flex items-center justify-between gap-2 py-2.5 pl-5 pr-4 text-gray-600 hover:bg-gray-100">
+                  <span class="flex-1 text-sm font-semibold">Sofa</span>
+
+                  <span class="material-symbols-rounded text-xl/5">close</span>
+                </a>
+
+                <a href="#" class="flex items-center justify-between gap-2 py-2.5 pl-5 pr-4 text-gray-600 hover:bg-gray-100">
+                  <span class="flex-1 text-sm font-semibold">Bed</span>
+
+                  <span class="material-symbols-rounded text-xl/5">close</span>
+                </a>
+
+                <a href="#" class="flex items-center justify-between gap-2 py-2.5 pl-5 pr-4 text-gray-600 hover:bg-gray-100">
+                  <span class="flex-1 text-sm font-semibold">Pillow</span>
+
+                  <span class="material-symbols-rounded text-xl/5">close</span>
+                </a>
+
+                <a href="#" class="flex items-center justify-between gap-2 py-2.5 pl-5 pr-4 text-gray-600 hover:bg-gray-100">
+                  <span class="flex-1 text-sm font-semibold">Table</span>
+
+                  <span class="material-symbols-rounded text-xl/5">close</span>
+                </a>
+
+                <a href="#" class="flex items-center justify-between gap-2 py-2.5 pl-5 pr-4 text-gray-600 hover:bg-gray-100">
+                  <span class="flex-1 text-sm font-semibold">Lamp</span>
+
+                  <span class="material-symbols-rounded text-xl/5">close</span>
+                </a>
+
+                <div class="text-center">
+                  <a href="#" class="my-2 inline-flex items-end gap-1 text-sm font-bold">
+                    <span class="mb-0.5 text-xs/3">View more</span>
+                    <span class="material-symbols-rounded text-base/4">expand_more</span>
+                  </a>
+                </div>
+              </div>
+              <div class="mx-5 border-t border-gray-200"></div>
+            </div>
+            <div class="px-5 pb-5 pt-4">
+              <h5 class="pb-5 text-base font-bold">Search sugestions</h5>
+              <div class="flex flex-wrap gap-2">
+                <a href="#" class="rounded-lg bg-gray-100 px-2.5 py-1.5 text-xs font-bold">Knife</a>
+
+                <a href="#" class="rounded-lg bg-gray-100 px-2.5 py-1.5 text-xs font-bold">Shoe racks</a>
+
+                <a href="#" class="rounded-lg bg-gray-100 px-2.5 py-1.5 text-xs font-bold">Bathroom mirror</a>
+
+                <a href="#" class="rounded-lg bg-gray-100 px-2.5 py-1.5 text-xs font-bold">Bed</a>
+
+                <a href="#" class="rounded-lg bg-gray-100 px-2.5 py-1.5 text-xs font-bold">Table lamp</a>
+
+                <a href="#" class="rounded-lg bg-gray-100 px-2.5 py-1.5 text-xs font-bold">Pillow</a>
+
+                <a href="#" class="rounded-lg bg-gray-100 px-2.5 py-1.5 text-xs font-bold">Bookshelf</a>
+
+                <a href="#" class="rounded-lg bg-gray-100 px-2.5 py-1.5 text-xs font-bold">Towel</a>
+
+                <a href="#" class="rounded-lg bg-gray-100 px-2.5 py-1.5 text-xs font-bold">Napkins</a>
+
+                <a href="#" class="rounded-lg bg-gray-100 px-2.5 py-1.5 text-xs font-bold">Clocks</a>
+
+                <a href="#" class="rounded-lg bg-gray-100 px-2.5 py-1.5 text-xs font-bold">Mirrors</a>
+              </div>
+            </div>
+          </div>
+        </form>
+        <div class="flex gap-3">
+          <a href="cart.html" class="relative hidden p-2.5 lg:flex">
+            <span class="material-symbols-rounded text-xl/5">shopping_cart</span>
+            <span class="absolute right-1.5 top-1.5 h-1.5 w-1.5 rounded-full bg-red-950"></span>
+          </a>
+          <a href="#" class="relative flex p-2.5 lg:hidden">
+            <span class="material-symbols-rounded text-xl/5">notifications</span>
+            <span class="absolute right-1.5 top-1.5 h-1.5 w-1.5 rounded-full bg-red-950"></span>
+          </a>
+          <div class="relative hidden lg:flex" x-data="dropdown">
+            <a href="#" class="relative flex p-2.5" x-bind="dropdownTrigger">
+              <span class="material-symbols-rounded text-xl/5">notifications</span>
+              <span class="absolute right-1.5 top-1.5 h-1.5 w-1.5 rounded-full bg-red-950"></span>
+            </a>
+            <div
+              x-bind="dropdownMenu"
+              x-cloak
+              x-transition:enter="transition-all duration-300"
+              x-transition:enter-start="-translate-y-6 opacity-0"
+              x-transition:enter-end="translate-y-0 opacity-100"
+              x-transition:leave="transition-all duration-300"
+              x-transition:leave-start="translate-y-0 opacity-100"
+              x-transition:leave-end="-translate-y-6 opacity-0"
+              class="absolute right-0 top-full z-30 mt-3 w-96 overflow-hidden rounded-xl bg-white shadow-xl">
+              <div class="border-b border-gray-200 px-5 pt-5">
+                <div class="flex items-center justify-between">
+                  <span class="text-base font-bold">Notifications</span>
+                  <a href="#" class="material-symbols-rounded text-xl/5">settings</a>
+                </div>
+                <div class="flex justify-around py-4">
+                  <a href="#" class="text-xs font-bold">All</a>
+                  <a href="#" class="text-xs font-bold text-gray-600">Orders</a>
+                  <a href="#" class="text-xs font-bold text-gray-600">Promotions</a>
+                  <a href="#" class="text-xs font-bold text-gray-600">Info</a>
+                </div>
+              </div>
+              <div class="h-96 overflow-y-auto py-2">
+                <ul>
+                  <li>
+                    <a href="#" class="flex items-start gap-3 px-5 py-3 hover:bg-gray-100">
+                      <div class="flex rounded-lg bg-green-100 p-2.5 text-green-950">
+                        <span class="material-symbols-rounded">sell</span>
+                      </div>
+
+                      <div class="flex-1">
+                        <div class="mb-1 flex justify-between text-xs text-gray-600">
+                          <span class="font-bold">Promotion</span>
+                          <span>21-12-2023 08:00</span>
+                        </div>
+                        <h5 class="mb-1 text-sm font-bold">Christmas sale up to 70% off</h5>
+                        <p class="line-clamp-2 text-xs/relaxed text-gray-600">Dictumst aliquam placerat praesent nibh. Id aenean mauris pulvinar adipiscing mi.</p>
+                      </div>
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="#" class="flex items-start gap-3 px-5 py-3 hover:bg-gray-100">
+                      <div class="flex rounded-lg bg-yellow-100 p-2.5 text-yellow-950">
+                        <span class="material-symbols-rounded">receipt_long</span>
+                      </div>
+
+                      <div class="flex-1">
+                        <div class="mb-1 flex justify-between text-xs text-gray-600">
+                          <span class="font-bold">Order</span>
+                          <span>20-12-2023 11:00</span>
+                        </div>
+                        <h5 class="mb-1 text-sm font-bold">Your order has arrived</h5>
+                        <p class="line-clamp-2 text-xs/relaxed text-gray-600">Vitae elit sem sit eget nulla elit. Lorem lobortis tincidunt egestas luctus diam arcu feugiat libero.</p>
+                      </div>
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="#" class="flex items-start gap-3 px-5 py-3 hover:bg-gray-100">
+                      <div class="flex rounded-lg bg-yellow-100 p-2.5 text-yellow-950">
+                        <span class="material-symbols-rounded">receipt_long</span>
+                      </div>
+
+                      <div class="flex-1">
+                        <div class="mb-1 flex justify-between text-xs text-gray-600">
+                          <span class="font-bold">Order</span>
+                          <span>20-12-2023 08:00</span>
+                        </div>
+                        <h5 class="mb-1 text-sm font-bold">Your order is being delivered</h5>
+                        <p class="line-clamp-2 text-xs/relaxed text-gray-600">Eu ac non at egestas. In faucibus convallis gravida diam metus tortor ut congue.</p>
+                      </div>
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="#" class="flex items-start gap-3 px-5 py-3 hover:bg-gray-100">
+                      <div class="flex rounded-lg bg-yellow-100 p-2.5 text-yellow-950">
+                        <span class="material-symbols-rounded">receipt_long</span>
+                      </div>
+
+                      <div class="flex-1">
+                        <div class="mb-1 flex justify-between text-xs text-gray-600">
+                          <span class="font-bold">Order</span>
+                          <span>20-12-2023 07:00</span>
+                        </div>
+                        <h5 class="mb-1 text-sm font-bold">Your order is ready to be delivered</h5>
+                        <p class="line-clamp-2 text-xs/relaxed text-gray-600">Faucibus consequat enim donec nec. Elit venenatis sagittis a aliquam.</p>
+                      </div>
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="#" class="flex items-start gap-3 px-5 py-3 hover:bg-gray-100">
+                      <div class="flex rounded-lg bg-yellow-100 p-2.5 text-yellow-950">
+                        <span class="material-symbols-rounded">receipt_long</span>
+                      </div>
+
+                      <div class="flex-1">
+                        <div class="mb-1 flex justify-between text-xs text-gray-600">
+                          <span class="font-bold">Order</span>
+                          <span>19-12-2023 16:00</span>
+                        </div>
+                        <h5 class="mb-1 text-sm font-bold">Your order is being prepared</h5>
+                        <p class="line-clamp-2 text-xs/relaxed text-gray-600">Consequat interdum nunc amet tellus adipiscing dui turpis. Feugiat id lacus vel egestas id turpis.</p>
+                      </div>
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="#" class="flex items-start gap-3 px-5 py-3 hover:bg-gray-100">
+                      <div class="flex rounded-lg bg-green-100 p-2.5 text-green-950">
+                        <span class="material-symbols-rounded">sell</span>
+                      </div>
+
+                      <div class="flex-1">
+                        <div class="mb-1 flex justify-between text-xs text-gray-600">
+                          <span class="font-bold">Promotion</span>
+                          <span>05-10-2023 12:00</span>
+                        </div>
+                        <h5 class="mb-1 text-sm font-bold">25% special discount just for you</h5>
+                        <p class="line-clamp-2 text-xs/relaxed text-gray-600">Sapien vel vel egestas ut. Nisl semper vitae egestas interdum.</p>
+                      </div>
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="#" class="flex items-start gap-3 px-5 py-3 hover:bg-gray-100">
+                      <div class="flex rounded-lg bg-blue-100 p-2.5 text-blue-950">
+                        <span class="material-symbols-rounded">info</span>
+                      </div>
+
+                      <div class="flex-1">
+                        <div class="mb-1 flex justify-between text-xs text-gray-600">
+                          <span class="font-bold">Info</span>
+                          <span>24-09-2023 10:00</span>
+                        </div>
+                        <h5 class="mb-1 text-sm font-bold">Complete your profile</h5>
+                        <p class="line-clamp-2 text-xs/relaxed text-gray-600">Arcu congue in in vitae sed adipiscing. Ultricies fermentum nisl proin sapien senectus.</p>
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="relative hidden lg:flex" x-data="dropdown">
+            <a href="#" class="ml-2.5" x-bind="dropdownTrigger">
+              <img src="assets/img/users/1.webp" alt="Ronald Richards" height="40" width="40" class="rounded-full" />
+            </a>
+            <div
+              x-bind="dropdownMenu"
+              x-cloak
+              x-transition:enter="transition-all duration-300"
+              x-transition:enter-start="-translate-y-6 opacity-0"
+              x-transition:enter-end="translate-y-0 opacity-100"
+              x-transition:leave="transition-all duration-300"
+              x-transition:leave-start="translate-y-0 opacity-100"
+              x-transition:leave-end="-translate-y-6 opacity-0"
+              class="absolute right-0 top-full z-30 mt-3 w-96 rounded-xl bg-white shadow-xl">
+              <div class="mx-5 mt-5 flex items-center gap-4 border-b border-gray-200 pb-5 font-bold">
+                <img src="assets/img/users/1.webp" alt="Ronald Richards" height="48" width="48" class="rounded-full" />
+                <div>
+                  <h5 class="text-lg/6">Ronald Richards</h5>
+                  <a href="#" class="text-xs text-blue-950">Edit profile</a>
+                </div>
+              </div>
+              <ul class="py-2.5">
+                <li>
+                  <a href="#" class="flex items-center justify-between gap-2 py-2.5 pl-5 pr-4 hover:bg-gray-100">
+                    <span class="material-symbols-rounded text-xl/5">receipt_long</span>
+
+                    <span class="flex-1 text-sm font-semibold">Orders</span>
+
+                    <span class="text-xs font-semibold text-gray-600"></span>
+
+                    <span class="material-symbols-rounded text-xl/5">chevron_right</span>
+                  </a>
+
+                  <ul class="mx-5 mb-2.5 flex justify-around border-b border-gray-200 pb-5 pt-2.5">
+                    <li>
+                      <a href="#" class="flex flex-col items-center gap-1 text-gray-600">
+                        <span class="material-symbols-rounded text-xl/5">account_balance_wallet</span>
+                        <span class="flex-1 text-xs font-semibold">Top pay</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" class="flex flex-col items-center gap-1 text-gray-600">
+                        <span class="material-symbols-rounded text-xl/5">package</span>
+                        <span class="flex-1 text-xs font-semibold">To ship</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" class="flex flex-col items-center gap-1 text-gray-600">
+                        <span class="material-symbols-rounded text-xl/5">local_shipping</span>
+                        <span class="flex-1 text-xs font-semibold">To receive</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" class="flex flex-col items-center gap-1 text-gray-600">
+                        <span class="material-symbols-rounded text-xl/5">star</span>
+                        <span class="flex-1 text-xs font-semibold">To rate</span>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+
+                <li>
+                  <a href="#" class="flex items-center justify-between gap-2 py-2.5 pl-5 pr-4 hover:bg-gray-100">
+                    <span class="material-symbols-rounded text-xl/5">favorite</span>
+
+                    <span class="flex-1 text-sm font-semibold">Wishlist</span>
+
+                    <span class="text-xs font-semibold text-gray-600">10 items</span>
+
+                    <span class="material-symbols-rounded text-xl/5">chevron_right</span>
+                  </a>
+                </li>
+
+                <li>
+                  <a href="#" class="flex items-center justify-between gap-2 py-2.5 pl-5 pr-4 hover:bg-gray-100">
+                    <span class="material-symbols-rounded text-xl/5">star</span>
+
+                    <span class="flex-1 text-sm font-semibold">Reviews</span>
+
+                    <span class="text-xs font-semibold text-gray-600"></span>
+
+                    <span class="material-symbols-rounded text-xl/5">chevron_right</span>
+                  </a>
+                </li>
+
+                <li>
+                  <a href="#" class="flex items-center justify-between gap-2 py-2.5 pl-5 pr-4 hover:bg-gray-100">
+                    <span class="material-symbols-rounded text-xl/5">history</span>
+
+                    <span class="flex-1 text-sm font-semibold">Recently viewed</span>
+
+                    <span class="text-xs font-semibold text-gray-600"></span>
+
+                    <span class="material-symbols-rounded text-xl/5">chevron_right</span>
+                  </a>
+                </li>
+
+                <li>
+                  <div class="mx-5 my-2.5 border-t border-gray-200"></div>
+                </li>
+
+                <li>
+                  <a href="#" class="flex items-center justify-between gap-2 py-2.5 pl-5 pr-4 hover:bg-gray-100">
+                    <span class="material-symbols-rounded text-xl/5">settings</span>
+
+                    <span class="flex-1 text-sm font-semibold">Account settings</span>
+
+                    <span class="text-xs font-semibold text-gray-600"></span>
+
+                    <span class="material-symbols-rounded text-xl/5">chevron_right</span>
+                  </a>
+                </li>
+
+                <li>
+                  <a href="#" class="flex items-center justify-between gap-2 py-2.5 pl-5 pr-4 hover:bg-gray-100">
+                    <span class="material-symbols-rounded text-xl/5">help</span>
+
+                    <span class="flex-1 text-sm font-semibold">Help center</span>
+
+                    <span class="text-xs font-semibold text-gray-600"></span>
+
+                    <span class="material-symbols-rounded text-xl/5">chevron_right</span>
+                  </a>
+                </li>
+
+                <li>
+                  <a href="#" class="mx-5 my-2.5 flex justify-center gap-2 rounded-xl border border-gray-200 py-2.5">
+                    <span class="material-symbols-rounded text-xl/5">logout</span>
+                    <span class="text-sm font-bold">Logout</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <div class="relative">
+        <header class="absolute inset-x-0 top-0 z-10 lg:hidden">
+          <nav class="container flex items-center justify-between py-3 lg:py-5">
+            <a href="/" class="flex py-2.5 pr-2.5">
+              <span class="material-symbols-rounded text-xl/5">arrow_back</span>
+            </a>
+            <a href="cart.html" class="relative flex p-2.5">
+              <span class="material-symbols-rounded text-xl/5">shopping_cart</span>
+              <span class="absolute right-1.5 top-1.5 h-1.5 w-1.5 rounded-full bg-red-950"></span>
+            </a>
+          </nav>
+        </header>
+
+        <div class="mb-8 flex flex-wrap items-start gap-x-6 sm:container sm:pt-16 lg:mb-16 lg:pt-0">
+          <div class="w-full lg:mb-16 lg:w-7/12 lg:pt-32">
+            <div class="flex gap-6 sm:h-[26rem] md:h-[32rem] lg:h-[26rem] xl:h-[32rem]">
+              <div id="product-thumbnail" class="swiper hidden flex-1 sm:block sm:rounded-xl">
+                <div class="swiper-wrapper">
+                  <img src="assets/img/products/3-md.webp" alt="Thumbail 1" class="swiper-slide aspect-square h-auto rounded-xl object-cover" />
+
+                  <img src="assets/img/products/3-1-md.webp" alt="Thumbail 2" class="swiper-slide aspect-square h-auto rounded-xl object-cover" />
+
+                  <img src="assets/img/products/3-2-md.webp" alt="Thumbail 3" class="swiper-slide aspect-square h-auto rounded-xl object-cover" />
+
+                  <img src="assets/img/products/3-3-md.webp" alt="Thumbail 4" class="swiper-slide aspect-square h-auto rounded-xl object-cover" />
+                </div>
+              </div>
+              <div id="product-images" class="swiper sm:w-[26rem] sm:rounded-xl md:w-[32rem] lg:w-[26rem] xl:w-[32rem]">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide">
+                    <div class="swiper-zoom-container">
+                      <img src="assets/img/products/3-md.webp" alt="Product 1" class="aspect-square w-full object-cover sm:rounded-xl" />
+                    </div>
+                  </div>
+
+                  <div class="swiper-slide">
+                    <div class="swiper-zoom-container">
+                      <img src="assets/img/products/3-1-md.webp" alt="Product 2" class="aspect-square w-full object-cover sm:rounded-xl" />
+                    </div>
+                  </div>
+
+                  <div class="swiper-slide">
+                    <div class="swiper-zoom-container">
+                      <img src="assets/img/products/3-2-md.webp" alt="Product 3" class="aspect-square w-full object-cover sm:rounded-xl" />
+                    </div>
+                  </div>
+
+                  <div class="swiper-slide">
+                    <div class="swiper-zoom-container">
+                      <img src="assets/img/products/3-3-md.webp" alt="Product 4" class="aspect-square w-full object-cover sm:rounded-xl" />
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-pagination sm:hidden"></div>
+              </div>
+            </div>
+          </div>
+          <div class="mb-4 w-full pt-6 lg:sticky lg:top-0 lg:mb-0 lg:flex-1 lg:pt-32">
+            <div class="px-6 sm:px-0">
+              <h1 class="mb-3 line-clamp-2 text-xl font-bold lg:text-2xl">Single Drawer Bedside Table</h1>
+              <div class="truncate text-base font-bold lg:text-lg">Rp 600.000</div>
+
+              <div class="flex items-center gap-1 lg:mb-2 lg:gap-2">
+                <div class="truncate text-sm font-medium text-gray-700 line-through lg:text-base">Rp 800.000</div>
+                <span class="rounded-md bg-green-200 px-1.5 py-0.5 text-sm font-bold text-green-950">25%</span>
+              </div>
+
+              <div class="flex items-center justify-between pb-3 pt-4">
+                <div class="flex items-center">
+                  <span class="mr-3 border-r border-gray-200 pr-3.5 text-sm font-bold text-gray-700">100 sold</span>
+                  <div class="inline-flex gap-1">
+                    <span class="icon-filled material-symbols-rounded text-xl/5 text-yellow-950">star</span>
+                    <span class="text-sm font-bold text-gray-700">4.8</span>
+                  </div>
+                </div>
+                <div class="flex gap-4">
+                  <a href="#" class="flex">
+                    <span class="material-symbols-rounded text-xl/5">favorite</span>
+                  </a>
+                  <a href="#" class="flex">
+                    <span class="material-symbols-rounded text-xl/5">share</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="relative block pb-4 pl-6 pr-5 pt-3 sm:px-0">
+              <button class="absolute inset-0 lg:hidden" x-data @click="$store.modalProduct.open('variation')"></button>
+              <div class="mb-4 flex items-center justify-between">
+                <span class="text-base font-bold lg:text-lg">Select variation</span>
+                <small class="ml-1 mr-auto text-sm/6 font-medium text-gray-700 lg:ml-2">(3 colors)</small>
+                <span class="material-symbols-rounded text-xl/5 lg:hidden">chevron_right</span>
+              </div>
+
+              <div class="lg:mb-3">
+                <div class="mb-2 hidden text-sm font-bold lg:block">Color</div>
+                <div class="flex flex-wrap gap-2">
+                  <label class="cursor-pointer">
+                    <input type="radio" name="color" value="Black" class="peer hidden" />
+                    <div class="flex items-center gap-1.5 rounded-lg bg-gray-100 px-2.5 py-1.5 text-xs font-bold peer-checked:ring-2 peer-checked:ring-blue-950">
+                      <span class="icon-filled material-symbols-rounded text-base/4 text-black">circle</span>
+                      <span>Black</span>
+                    </div>
+                  </label>
+
+                  <label class="cursor-pointer">
+                    <input type="radio" name="color" value="Gray" class="peer hidden" />
+                    <div class="flex items-center gap-1.5 rounded-lg bg-gray-100 px-2.5 py-1.5 text-xs font-bold peer-checked:ring-2 peer-checked:ring-blue-950">
+                      <span class="icon-filled material-symbols-rounded text-base/4 text-gray-500">circle</span>
+                      <span>Gray</span>
+                    </div>
+                  </label>
+
+                  <label class="cursor-pointer">
+                    <input type="radio" name="color" value="White" class="peer hidden" />
+                    <div class="flex items-center gap-1.5 rounded-lg bg-gray-100 px-2.5 py-1.5 text-xs font-bold peer-checked:ring-2 peer-checked:ring-blue-950">
+                      <span class="icon-filled material-symbols-rounded text-base/4 text-white">circle</span>
+                      <span>White</span>
+                    </div>
+                  </label>
+                </div>
+              </div>
+
+              <div class="hidden lg:block">
+                <div class="mb-2 text-sm font-bold">Quantity</div>
+                <div class="inline-flex rounded-lg border border-gray-300">
+                  <button class="flex p-1.5">
+                    <span class="material-symbols-rounded text-base/4">remove</span>
+                  </button>
+                  <input type="text" name="quantity" value="1" class="w-11 border-0 px-2 py-0 text-center" />
+                  <button class="flex p-1.5">
+                    <span class="material-symbols-rounded text-base/4">add</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="hidden pt-4 lg:flex lg:gap-3">
+              <button class="flex justify-center gap-2 rounded-xl border border-gray-300 p-2.5 lg:flex-1">
+                <span class="material-symbols-rounded text-xl/5">add_shopping_cart</span>
+                <span class="text-sm font-bold">Add to cart</span>
+              </button>
+              <button class="flex-1 rounded-xl bg-gray-950 p-2.5 text-sm font-bold text-white">Buy now</button>
+            </div>
+          </div>
+          <div class="mb-8 w-full px-6 sm:px-0 lg:mb-16 lg:w-7/12">
+            <h5 class="mb-4 text-base font-bold lg:mb-6 lg:text-xl">Description</h5>
+            <div class="prose prose-sm prose-slate lg:prose-base">
+              <p>
+                Lorem ipsum dolor sit amet consectetur. Purus orci amet laoreet laoreet hac elit. Morbi nisi condimentum proin elit nisi pellentesque nunc sit. Tortor condimentum praesent lobortis
+                cras sed. Nisi leo sollicitudin nulla donec feugiat fringilla hac aliquam accumsan. Risus nulla purus habitant in purus.
+              </p>
+              <p>
+                Fusce duis vulputate sed ultrices. Tempus quis fringilla posuere malesuada leo quis platea tortor consectetur. Sapien turpis velit eros neque porta. At nulla ultricies quis posuere
+                facilisis quis lacus gravida. In ullamcorper malesuada ut felis ipsum phasellus interdum quam mus. Nullam sed nunc eu gravida elementum.
+              </p>
+            </div>
+            <div class="pt-3 text-center lg:pt-5">
+              <a href="#" class="inline-flex items-center gap-1 font-bold">
+                <span class="mb-0.5 text-sm lg:text-base/4">View more</span>
+                <span class="material-symbols-rounded text-xl/5 lg:text-2xl/6">expand_more</span>
+              </a>
+            </div>
+          </div>
+          <div class="w-full px-6 sm:px-0 lg:w-7/12">
+            <h5 class="mb-4 text-base font-bold lg:mb-6 lg:text-xl">Reviews</h5>
+            <div>
+              <div class="mb-5 lg:mb-6">
+                <div class="mb-2.5 flex items-center gap-2 lg:mb-3 lg:gap-3">
+                  <img src="assets/img/users/2.webp" alt="Leslie Alexander" class="h-6 w-6 rounded-full lg:h-8 lg:w-8" />
+                  <span class="mb-0.5 text-sm font-bold lg:text-base">Leslie Alexander</span>
+                  <span class="ml-auto text-xs font-medium text-gray-600">01-12-2023 17:00</span>
+                </div>
+                <div>
+                  <span class="icon-filled material-symbols-rounded text-base/4 text-yellow-950 lg:text-xl/5">star</span>
+
+                  <span class="icon-filled material-symbols-rounded text-base/4 text-yellow-950 lg:text-xl/5">star</span>
+
+                  <span class="icon-filled material-symbols-rounded text-base/4 text-yellow-950 lg:text-xl/5">star</span>
+
+                  <span class="icon-filled material-symbols-rounded text-base/4 text-yellow-950 lg:text-xl/5">star</span>
+
+                  <span class="icon-filled material-symbols-rounded text-base/4 text-yellow-950 lg:text-xl/5">star</span>
+                </div>
+                <div class="mb-2 text-xs font-bold text-gray-600 lg:mb-3 lg:mt-1 lg:text-sm">Variation: White</div>
+                <div class="text-sm lg:text-base">Lorem ipsum dolor sit amet consectetur. Suspendisse ac velit aliquam suscipit volutpat eget.</div>
+              </div>
+
+              <div class="mb-5 lg:mb-6">
+                <div class="mb-2.5 flex items-center gap-2 lg:mb-3 lg:gap-3">
+                  <img src="assets/img/users/3.webp" alt="Jane Cooper" class="h-6 w-6 rounded-full lg:h-8 lg:w-8" />
+                  <span class="mb-0.5 text-sm font-bold lg:text-base">Jane Cooper</span>
+                  <span class="ml-auto text-xs font-medium text-gray-600">05-10-2023 12:00</span>
+                </div>
+                <div>
+                  <span class="icon-filled material-symbols-rounded text-base/4 text-yellow-950 lg:text-xl/5">star</span>
+
+                  <span class="icon-filled material-symbols-rounded text-base/4 text-yellow-950 lg:text-xl/5">star</span>
+
+                  <span class="icon-filled material-symbols-rounded text-base/4 text-yellow-950 lg:text-xl/5">star</span>
+
+                  <span class="icon-filled material-symbols-rounded text-base/4 text-yellow-950 lg:text-xl/5">star</span>
+
+                  <span class="icon-filled material-symbols-rounded text-base/4 text-yellow-950 lg:text-xl/5">star</span>
+                </div>
+                <div class="mb-2 text-xs font-bold text-gray-600 lg:mb-3 lg:mt-1 lg:text-sm">Variation: Black</div>
+                <div class="text-sm lg:text-base">A habitasse massa consequat dignissim ut enim quis eu. Ultrices fermentum quam volutpat malesuada congue et vestibulum eget diam.</div>
+              </div>
+
+              <div class="mb-5 lg:mb-6">
+                <div class="mb-2.5 flex items-center gap-2 lg:mb-3 lg:gap-3">
+                  <img src="assets/img/users/4.webp" alt="Jenny Wilson" class="h-6 w-6 rounded-full lg:h-8 lg:w-8" />
+                  <span class="mb-0.5 text-sm font-bold lg:text-base">Jenny Wilson</span>
+                  <span class="ml-auto text-xs font-medium text-gray-600">24-09-2023 10:00</span>
+                </div>
+                <div>
+                  <span class="icon-filled material-symbols-rounded text-base/4 text-yellow-950 lg:text-xl/5">star</span>
+
+                  <span class="icon-filled material-symbols-rounded text-base/4 text-yellow-950 lg:text-xl/5">star</span>
+
+                  <span class="icon-filled material-symbols-rounded text-base/4 text-yellow-950 lg:text-xl/5">star</span>
+
+                  <span class="icon-filled material-symbols-rounded text-base/4 text-yellow-950 lg:text-xl/5">star</span>
+
+                  <span class="icon-filled material-symbols-rounded text-base/4 text-gray-200 lg:text-xl/5">star</span>
+                </div>
+                <div class="mb-2 text-xs font-bold text-gray-600 lg:mb-3 lg:mt-1 lg:text-sm">Variation: Gray</div>
+                <div class="text-sm lg:text-base">Sit dapibus enim et donec. Et amet eget dictum vel facilisis risus porttitor auctor turpis.</div>
+              </div>
+            </div>
+            <div class="text-center">
+              <a href="#" class="inline-flex items-center gap-1 font-bold">
+                <span class="mb-0.5 text-sm lg:text-base/4">View all reviews</span>
+                <span class="material-symbols-rounded text-xl/5 lg:text-2xl/6">chevron_right</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container grid grid-cols-12 pb-16">
+        <div class="col-span-12">
+          <h5 class="mb-4 text-base font-bold lg:mb-6 lg:text-xl">Related products</h5>
+          <div class="grid grid-cols-2 gap-6 pb-6 sm:grid-cols-3 lg:grid-cols-4 lg:pb-0">
+            <div class="relative flex flex-col rounded-xl border border-gray-200">
+              <button class="absolute right-3 top-3 rounded-full bg-white lg:right-4 lg:top-4">
+                <span class="icon-filled material-symbols-rounded p-2 text-base/4 text-red-950 lg:p-2.5 lg:text-xl/5">favorite</span>
+              </button>
+              <a href="product-details.html">
+                <img src="assets/img/products/1.webp" alt="Wooden Side Table" class="w-full rounded-t-xl" />
+              </a>
+              <a href="product-details.html" class="flex-auto px-3 pt-3 lg:px-4 lg:pt-4">
+                <span class="mb-2 block truncate text-sm font-bold lg:text-lg" title="Wooden Side Table">Wooden Side Table</span>
+                <div class="truncate text-xs font-bold lg:text-base">Rp 1.500.000</div>
+
+                <div class="mb-1 flex items-center gap-1 lg:mb-2 lg:gap-2">
+                  <div class="truncate text-xs font-medium text-gray-700 line-through lg:text-sm">Rp 2.000.000</div>
+                  <span class="rounded bg-green-200 px-1 py-0.5 text-xs font-bold text-green-950 lg:rounded-md lg:px-1.5 lg:text-sm">25%</span>
+                </div>
+              </a>
+
+              <a href="product-details.html" class="flex items-center gap-1 px-3 pb-3 lg:px-4 lg:pb-4">
+                <span class="icon-filled material-symbols-rounded text-base/4 text-yellow-950 lg:text-xl/5">star</span>
+                <span class="mt-0.5 text-xs/3 font-bold text-gray-700 lg:mt-0 lg:text-sm">5.0</span>
+              </a>
+            </div>
+
+            <div class="relative flex flex-col rounded-xl border border-gray-200">
+              <button class="absolute right-3 top-3 rounded-full bg-white lg:right-4 lg:top-4">
+                <span class="material-symbols-rounded p-2 text-base/4 lg:p-2.5 lg:text-xl/5">favorite</span>
+              </button>
+              <a href="product-details.html">
+                <img src="assets/img/products/2.webp" alt="Ceramic Cabinet" class="w-full rounded-t-xl" />
+              </a>
+              <a href="product-details.html" class="flex-auto px-3 pt-3 lg:px-4 lg:pt-4">
+                <span class="mb-2 block truncate text-sm font-bold lg:text-lg" title="Ceramic Cabinet">Ceramic Cabinet</span>
+                <div class="truncate text-xs font-bold lg:text-base">Rp 2.800.000</div>
+
+                <div class="mb-1 flex items-center gap-1 lg:mb-2 lg:gap-2">
+                  <div class="truncate text-xs font-medium text-gray-700 line-through lg:text-sm">Rp 4.000.000</div>
+                  <span class="rounded bg-green-200 px-1 py-0.5 text-xs font-bold text-green-950 lg:rounded-md lg:px-1.5 lg:text-sm">30%</span>
+                </div>
+              </a>
+
+              <a href="product-details.html" class="flex items-center gap-1 px-3 pb-3 lg:px-4 lg:pb-4">
+                <span class="icon-filled material-symbols-rounded text-base/4 text-yellow-950 lg:text-xl/5">star</span>
+                <span class="mt-0.5 text-xs/3 font-bold text-gray-700 lg:mt-0 lg:text-sm">4.8</span>
+              </a>
+            </div>
+
+            <div class="relative flex flex-col rounded-xl border border-gray-200">
+              <button class="absolute right-3 top-3 rounded-full bg-white lg:right-4 lg:top-4">
+                <span class="material-symbols-rounded p-2 text-base/4 lg:p-2.5 lg:text-xl/5">favorite</span>
+              </button>
+              <a href="product-details.html">
+                <img src="assets/img/products/3.webp" alt="Single Drawer Bedside Table" class="w-full rounded-t-xl" />
+              </a>
+              <a href="product-details.html" class="flex-auto px-3 pt-3 lg:px-4 lg:pt-4">
+                <span class="mb-2 block truncate text-sm font-bold lg:text-lg" title="Single Drawer Bedside Table">Single Drawer Bedside Table</span>
+                <div class="truncate text-xs font-bold lg:text-base">Rp 600.000</div>
+
+                <div class="mb-1 flex items-center gap-1 lg:mb-2 lg:gap-2">
+                  <div class="truncate text-xs font-medium text-gray-700 line-through lg:text-sm">Rp 800.000</div>
+                  <span class="rounded bg-green-200 px-1 py-0.5 text-xs font-bold text-green-950 lg:rounded-md lg:px-1.5 lg:text-sm">25%</span>
+                </div>
+              </a>
+
+              <a href="product-details.html" class="flex items-center gap-1 px-3 pb-3 lg:px-4 lg:pb-4">
+                <span class="icon-filled material-symbols-rounded text-base/4 text-yellow-950 lg:text-xl/5">star</span>
+                <span class="mt-0.5 text-xs/3 font-bold text-gray-700 lg:mt-0 lg:text-sm">4.8</span>
+              </a>
+            </div>
+
+            <div class="relative flex flex-col rounded-xl border border-gray-200">
+              <button class="absolute right-3 top-3 rounded-full bg-white lg:right-4 lg:top-4">
+                <span class="icon-filled material-symbols-rounded p-2 text-base/4 text-red-950 lg:p-2.5 lg:text-xl/5">favorite</span>
+              </button>
+              <a href="product-details.html">
+                <img src="assets/img/products/4.webp" alt="Double Drawer Bedside Table" class="w-full rounded-t-xl" />
+              </a>
+              <a href="product-details.html" class="flex-auto px-3 pt-3 lg:px-4 lg:pt-4">
+                <span class="mb-2 block truncate text-sm font-bold lg:text-lg" title="Double Drawer Bedside Table">Double Drawer Bedside Table</span>
+                <div class="truncate text-xs font-bold lg:text-base">Rp 900.000</div>
+
+                <div class="mb-1 flex items-center gap-1 lg:mb-2 lg:gap-2">
+                  <div class="truncate text-xs font-medium text-gray-700 line-through lg:text-sm">Rp 1.500.000</div>
+                  <span class="rounded bg-green-200 px-1 py-0.5 text-xs font-bold text-green-950 lg:rounded-md lg:px-1.5 lg:text-sm">40%</span>
+                </div>
+              </a>
+
+              <a href="product-details.html" class="flex items-center gap-1 px-3 pb-3 lg:px-4 lg:pb-4">
+                <span class="icon-filled material-symbols-rounded text-base/4 text-yellow-950 lg:text-xl/5">star</span>
+                <span class="mt-0.5 text-xs/3 font-bold text-gray-700 lg:mt-0 lg:text-sm">5.0</span>
+              </a>
+            </div>
+
+            <div class="relative flex flex-col rounded-xl border border-gray-200">
+              <button class="absolute right-3 top-3 rounded-full bg-white lg:right-4 lg:top-4">
+                <span class="material-symbols-rounded p-2 text-base/4 lg:p-2.5 lg:text-xl/5">favorite</span>
+              </button>
+              <a href="product-details.html">
+                <img src="assets/img/products/5.webp" alt="Wall Mounted Lamp" class="w-full rounded-t-xl" />
+              </a>
+              <a href="product-details.html" class="flex-auto px-3 pt-3 lg:px-4 lg:pt-4">
+                <span class="mb-2 block truncate text-sm font-bold lg:text-lg" title="Wall Mounted Lamp">Wall Mounted Lamp</span>
+                <div class="truncate text-xs font-bold lg:text-base">Rp 750.000</div>
+
+                <div class="mb-1 flex items-center gap-1 lg:mb-2 lg:gap-2">
+                  <div class="truncate text-xs font-medium text-gray-700 line-through lg:text-sm">Rp 1.000.000</div>
+                  <span class="rounded bg-green-200 px-1 py-0.5 text-xs font-bold text-green-950 lg:rounded-md lg:px-1.5 lg:text-sm">25%</span>
+                </div>
+              </a>
+
+              <a href="product-details.html" class="flex items-center gap-1 px-3 pb-3 lg:px-4 lg:pb-4">
+                <span class="icon-filled material-symbols-rounded text-base/4 text-yellow-950 lg:text-xl/5">star</span>
+                <span class="mt-0.5 text-xs/3 font-bold text-gray-700 lg:mt-0 lg:text-sm">4.9</span>
+              </a>
+            </div>
+
+            <div class="relative flex flex-col rounded-xl border border-gray-200">
+              <button class="absolute right-3 top-3 rounded-full bg-white lg:right-4 lg:top-4">
+                <span class="material-symbols-rounded p-2 text-base/4 lg:p-2.5 lg:text-xl/5">favorite</span>
+              </button>
+              <a href="product-details.html">
+                <img src="assets/img/products/6.webp" alt="Wooden Coffee Table" class="w-full rounded-t-xl" />
+              </a>
+              <a href="product-details.html" class="flex-auto px-3 pt-3 lg:px-4 lg:pt-4">
+                <span class="mb-2 block truncate text-sm font-bold lg:text-lg" title="Wooden Coffee Table">Wooden Coffee Table</span>
+                <div class="truncate text-xs font-bold lg:text-base">Rp 1.400.000</div>
+
+                <div class="mb-1 flex items-center gap-1 lg:mb-2 lg:gap-2">
+                  <div class="truncate text-xs font-medium text-gray-700 line-through lg:text-sm">Rp 2.000.000</div>
+                  <span class="rounded bg-green-200 px-1 py-0.5 text-xs font-bold text-green-950 lg:rounded-md lg:px-1.5 lg:text-sm">30%</span>
+                </div>
+              </a>
+
+              <a href="product-details.html" class="flex items-center gap-1 px-3 pb-3 lg:px-4 lg:pb-4">
+                <span class="icon-filled material-symbols-rounded text-base/4 text-yellow-950 lg:text-xl/5">star</span>
+                <span class="mt-0.5 text-xs/3 font-bold text-gray-700 lg:mt-0 lg:text-sm">4.8</span>
+              </a>
+            </div>
+
+            <div class="relative flex flex-col rounded-xl border border-gray-200">
+              <button class="absolute right-3 top-3 rounded-full bg-white lg:right-4 lg:top-4">
+                <span class="material-symbols-rounded p-2 text-base/4 lg:p-2.5 lg:text-xl/5">favorite</span>
+              </button>
+              <a href="product-details.html">
+                <img src="assets/img/products/7.webp" alt="Solid Wood Coffee Table" class="w-full rounded-t-xl" />
+              </a>
+              <a href="product-details.html" class="flex-auto px-3 pt-3 lg:px-4 lg:pt-4">
+                <span class="mb-2 block truncate text-sm font-bold lg:text-lg" title="Solid Wood Coffee Table">Solid Wood Coffee Table</span>
+                <div class="truncate text-xs font-bold lg:text-base">Rp 2.550.000</div>
+
+                <div class="mb-1 flex items-center gap-1 lg:mb-2 lg:gap-2">
+                  <div class="truncate text-xs font-medium text-gray-700 line-through lg:text-sm">Rp 3.000.000</div>
+                  <span class="rounded bg-green-200 px-1 py-0.5 text-xs font-bold text-green-950 lg:rounded-md lg:px-1.5 lg:text-sm">15%</span>
+                </div>
+              </a>
+
+              <a href="product-details.html" class="flex items-center gap-1 px-3 pb-3 lg:px-4 lg:pb-4">
+                <span class="icon-filled material-symbols-rounded text-base/4 text-yellow-950 lg:text-xl/5">star</span>
+                <span class="mt-0.5 text-xs/3 font-bold text-gray-700 lg:mt-0 lg:text-sm">4.9</span>
+              </a>
+            </div>
+
+            <div class="relative flex flex-col rounded-xl border border-gray-200">
+              <button class="absolute right-3 top-3 rounded-full bg-white lg:right-4 lg:top-4">
+                <span class="material-symbols-rounded p-2 text-base/4 lg:p-2.5 lg:text-xl/5">favorite</span>
+              </button>
+              <a href="product-details.html">
+                <img src="assets/img/products/8.webp" alt="Long Dining Table" class="w-full rounded-t-xl" />
+              </a>
+              <a href="product-details.html" class="flex-auto px-3 pt-3 lg:px-4 lg:pt-4">
+                <span class="mb-2 block truncate text-sm font-bold lg:text-lg" title="Long Dining Table">Long Dining Table</span>
+                <div class="truncate text-xs font-bold lg:text-base">Rp 2.800.000</div>
+
+                <div class="mb-1 flex items-center gap-1 lg:mb-2 lg:gap-2">
+                  <div class="truncate text-xs font-medium text-gray-700 line-through lg:text-sm">Rp 4.000.000</div>
+                  <span class="rounded bg-green-200 px-1 py-0.5 text-xs font-bold text-green-950 lg:rounded-md lg:px-1.5 lg:text-sm">30%</span>
+                </div>
+              </a>
+
+              <a href="product-details.html" class="flex items-center gap-1 px-3 pb-3 lg:px-4 lg:pb-4">
+                <span class="icon-filled material-symbols-rounded text-base/4 text-yellow-950 lg:text-xl/5">star</span>
+                <span class="mt-0.5 text-xs/3 font-bold text-gray-700 lg:mt-0 lg:text-sm">4.8</span>
+              </a>
+            </div>
+
+            <div class="relative flex flex-col rounded-xl border border-gray-200">
+              <button class="absolute right-3 top-3 rounded-full bg-white lg:right-4 lg:top-4">
+                <span class="material-symbols-rounded p-2 text-base/4 lg:p-2.5 lg:text-xl/5">favorite</span>
+              </button>
+              <a href="product-details.html">
+                <img src="assets/img/products/9.webp" alt="Classic Chair" class="w-full rounded-t-xl" />
+              </a>
+              <a href="product-details.html" class="flex-auto px-3 pt-3 lg:px-4 lg:pt-4">
+                <span class="mb-2 block truncate text-sm font-bold lg:text-lg" title="Classic Chair">Classic Chair</span>
+                <div class="truncate text-xs font-bold lg:text-base">Rp 1.600.000</div>
+
+                <div class="mb-1 flex items-center gap-1 lg:mb-2 lg:gap-2">
+                  <div class="truncate text-xs font-medium text-gray-700 line-through lg:text-sm">Rp 2.000.000</div>
+                  <span class="rounded bg-green-200 px-1 py-0.5 text-xs font-bold text-green-950 lg:rounded-md lg:px-1.5 lg:text-sm">20%</span>
+                </div>
+              </a>
+
+              <a href="product-details.html" class="flex items-center gap-1 px-3 pb-3 lg:px-4 lg:pb-4">
+                <span class="icon-filled material-symbols-rounded text-base/4 text-yellow-950 lg:text-xl/5">star</span>
+                <span class="mt-0.5 text-xs/3 font-bold text-gray-700 lg:mt-0 lg:text-sm">4.6</span>
+              </a>
+            </div>
+
+            <div class="relative flex flex-col rounded-xl border border-gray-200">
+              <button class="absolute right-3 top-3 rounded-full bg-white lg:right-4 lg:top-4">
+                <span class="material-symbols-rounded p-2 text-base/4 lg:p-2.5 lg:text-xl/5">favorite</span>
+              </button>
+              <a href="product-details.html">
+                <img src="assets/img/products/10.webp" alt="Sofa Pillow" class="w-full rounded-t-xl" />
+              </a>
+              <a href="product-details.html" class="flex-auto px-3 pt-3 lg:px-4 lg:pt-4">
+                <span class="mb-2 block truncate text-sm font-bold lg:text-lg" title="Sofa Pillow">Sofa Pillow</span>
+                <div class="truncate text-xs font-bold lg:text-base">Rp 300.000</div>
+
+                <div class="mb-1 flex items-center gap-1 lg:mb-2 lg:gap-2">
+                  <div class="truncate text-xs font-medium text-gray-700 line-through lg:text-sm">Rp 600.000</div>
+                  <span class="rounded bg-green-200 px-1 py-0.5 text-xs font-bold text-green-950 lg:rounded-md lg:px-1.5 lg:text-sm">50%</span>
+                </div>
+              </a>
+
+              <a href="product-details.html" class="flex items-center gap-1 px-3 pb-3 lg:px-4 lg:pb-4">
+                <span class="icon-filled material-symbols-rounded text-base/4 text-yellow-950 lg:text-xl/5">star</span>
+                <span class="mt-0.5 text-xs/3 font-bold text-gray-700 lg:mt-0 lg:text-sm">5.0</span>
+              </a>
+            </div>
+
+            <div class="relative flex flex-col rounded-xl border border-gray-200">
+              <button class="absolute right-3 top-3 rounded-full bg-white lg:right-4 lg:top-4">
+                <span class="icon-filled material-symbols-rounded p-2 text-base/4 text-red-950 lg:p-2.5 lg:text-xl/5">favorite</span>
+              </button>
+              <a href="product-details.html">
+                <img src="assets/img/products/11.webp" alt="Clay Vase" class="w-full rounded-t-xl" />
+              </a>
+              <a href="product-details.html" class="flex-auto px-3 pt-3 lg:px-4 lg:pt-4">
+                <span class="mb-2 block truncate text-sm font-bold lg:text-lg" title="Clay Vase">Clay Vase</span>
+                <div class="truncate text-xs font-bold lg:text-base">Rp 150.000</div>
+
+                <div class="mb-1 flex items-center gap-1 lg:mb-2 lg:gap-2">
+                  <div class="truncate text-xs font-medium text-gray-700 line-through lg:text-sm">Rp 200.000</div>
+                  <span class="rounded bg-green-200 px-1 py-0.5 text-xs font-bold text-green-950 lg:rounded-md lg:px-1.5 lg:text-sm">25%</span>
+                </div>
+              </a>
+
+              <a href="product-details.html" class="flex items-center gap-1 px-3 pb-3 lg:px-4 lg:pb-4">
+                <span class="icon-filled material-symbols-rounded text-base/4 text-yellow-950 lg:text-xl/5">star</span>
+                <span class="mt-0.5 text-xs/3 font-bold text-gray-700 lg:mt-0 lg:text-sm">4.7</span>
+              </a>
+            </div>
+
+            <div class="relative flex flex-col rounded-xl border border-gray-200">
+              <button class="absolute right-3 top-3 rounded-full bg-white lg:right-4 lg:top-4">
+                <span class="material-symbols-rounded p-2 text-base/4 lg:p-2.5 lg:text-xl/5">favorite</span>
+              </button>
+              <a href="product-details.html">
+                <img src="assets/img/products/12.webp" alt="White Ceramic Vase" class="w-full rounded-t-xl" />
+              </a>
+              <a href="product-details.html" class="flex-auto px-3 pt-3 lg:px-4 lg:pt-4">
+                <span class="mb-2 block truncate text-sm font-bold lg:text-lg" title="White Ceramic Vase">White Ceramic Vase</span>
+                <div class="truncate text-xs font-bold lg:text-base">Rp 280.000</div>
+
+                <div class="mb-1 flex items-center gap-1 lg:mb-2 lg:gap-2">
+                  <div class="truncate text-xs font-medium text-gray-700 line-through lg:text-sm">Rp 400.000</div>
+                  <span class="rounded bg-green-200 px-1 py-0.5 text-xs font-bold text-green-950 lg:rounded-md lg:px-1.5 lg:text-sm">30%</span>
+                </div>
+              </a>
+
+              <a href="product-details.html" class="flex items-center gap-1 px-3 pb-3 lg:px-4 lg:pb-4">
+                <span class="icon-filled material-symbols-rounded text-base/4 text-yellow-950 lg:text-xl/5">star</span>
+                <span class="mt-0.5 text-xs/3 font-bold text-gray-700 lg:mt-0 lg:text-sm">4.9</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div x-data>
+      <div x-cloak x-show="$store.modalProduct.isOpen" x-transition.opacity.duration.300ms x-trap.noscroll.inert="$store.modalProduct.isOpen" class="fixed inset-0 z-40 bg-black/30">
+        <div
+          @click.outside="$store.modalProduct.close()"
+          x-show="$store.modalProduct.isOpen"
+          x-transition:enter="transition-all duration-300"
+          x-transition:enter-start="translate-y-full"
+          x-transition:enter-end="translate-y-0"
+          x-transition:leave="transition-all duration-300"
+          x-transition:leave-start="translate-y-0"
+          x-transition:leave-end="translate-y-full"
+          class="absolute inset-x-0 bottom-0 flex max-h-[calc(100%-4rem)] flex-col rounded-t-2xl bg-white">
+          <div class="flex items-center justify-between py-4 pl-6 pr-5">
+            <h1 class="text-base font-bold">Select variation</h1>
+            <button class="flex p-1" @click="$store.modalProduct.close()">
+              <span class="material-symbols-rounded text-xl/5 text-gray-600">close</span>
+            </button>
+          </div>
+          <div class="flex-1 overflow-auto px-6">
+            <div class="mb-4 flex items-center gap-4">
+              <img src="assets/img/products/3-md.webp" alt="Single Drawer Bedside Table" class="aspect-square w-3/12 rounded-xl sm:w-2/12" />
+              <div class="w-9/12 sm:w-10/12">
+                <div class="mb-2 truncate text-xl font-bold md:text-2xl">Single Drawer Bedside Table</div>
+                <div class="truncate text-base font-bold md:text-lg">Rp 600.000</div>
+
+                <div class="flex items-center gap-1 md:mb-2 md:gap-2">
+                  <div class="truncate text-sm font-medium text-gray-700 line-through md:text-base">Rp 800.000</div>
+                  <span class="rounded-md bg-green-200 px-1.5 py-0.5 text-sm font-bold text-green-950">25%</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <div class="mb-2 text-sm font-bold">Color</div>
+              <div class="flex flex-wrap gap-2">
+                <label class="cursor-pointer">
+                  <input type="radio" name="color" value="Black" class="peer hidden" />
+                  <div class="flex items-center gap-1.5 rounded-lg bg-gray-100 px-2.5 py-1.5 text-xs font-bold peer-checked:ring-2 peer-checked:ring-blue-950">
+                    <span class="icon-filled material-symbols-rounded text-base/4 text-black">circle</span>
+                    <span>Black</span>
+                  </div>
+                </label>
+
+                <label class="cursor-pointer">
+                  <input type="radio" name="color" value="Gray" class="peer hidden" />
+                  <div class="flex items-center gap-1.5 rounded-lg bg-gray-100 px-2.5 py-1.5 text-xs font-bold peer-checked:ring-2 peer-checked:ring-blue-950">
+                    <span class="icon-filled material-symbols-rounded text-base/4 text-gray-500">circle</span>
+                    <span>Gray</span>
+                  </div>
+                </label>
+
+                <label class="cursor-pointer">
+                  <input type="radio" name="color" value="White" class="peer hidden" />
+                  <div class="flex items-center gap-1.5 rounded-lg bg-gray-100 px-2.5 py-1.5 text-xs font-bold peer-checked:ring-2 peer-checked:ring-blue-950">
+                    <span class="icon-filled material-symbols-rounded text-base/4 text-white">circle</span>
+                    <span>White</span>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <div class="mb-2 text-sm font-bold">Quantity</div>
+              <div class="inline-flex rounded-lg border border-gray-300">
+                <button class="flex p-1.5">
+                  <span class="material-symbols-rounded text-base/4">remove</span>
+                </button>
+                <input type="text" name="quantity" value="1" class="w-11 border-0 px-2 py-0 text-center" />
+                <button class="flex p-1.5">
+                  <span class="material-symbols-rounded text-base/4">add</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="flex gap-3 px-6 pb-3 pt-4">
+            <template x-if="$store.modalProduct.type != 'buy-now' && $store.modalProduct.type != 'add-to-cart'">
+              <button class="flex rounded-xl border border-gray-300 p-2.5">
+                <span class="material-symbols-rounded text-xl/5">add_shopping_cart</span>
+              </button>
+            </template>
+            <button class="flex-1 rounded-xl bg-gray-950 p-2.5 text-sm font-bold text-white" x-text="$store.modalProduct.type == 'add-to-cart' ? 'Add to cart' : 'Buy now'"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <nav class="fixed inset-x-0 bottom-0 z-10 border-t border-gray-200 bg-white lg:hidden">
+      <div class="container flex gap-3 py-3">
+        <button class="flex rounded-xl border border-gray-300 p-2.5" x-data @click="$store.modalProduct.open('add-to-cart')">
+          <span class="material-symbols-rounded text-xl/5">add_shopping_cart</span>
+        </button>
+        <button class="flex-1 rounded-xl bg-gray-950 p-2.5 text-sm font-bold text-white" x-data @click="$store.modalProduct.open('buy-now')">Buy now</button>
+      </div>
+    </nav>
+
+    <footer class="hidden bg-gray-950 text-gray-300 lg:block">
+      <div class="container py-20">
+        <div class="flex gap-6">
+          <div class="flex w-5/12 gap-6">
+            <img src="assets/img/mockup-iphone.webp" alt="Maynooth App" width="144" class="h-auto" />
+            <div>
+              <h5 class="mb-5 text-xl font-semibold text-white">Download app</h5>
+              <p class="leading-7">
+                Curabitur sagittis viverra id gravida lectus morbi. Mattis facilisi integer volutpat tristique. Tempor hac molestie praesent hendrerit laoreet hac. Rutrum id feugiat facilisis odio.
+              </p>
+              <div class="mt-6 flex gap-3">
+                <a href="#">
+                  <img src="assets/img/btn-play-store.webp" alt="Google Play Store" height="40" width="135" />
+                </a>
+                <a href="#">
+                  <img src="assets/img/btn-app-store.webp" alt="Apple App Store" height="40" width="120" />
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-1 justify-center">
+            <div>
+              <h5 class="mb-5 text-xl font-semibold text-white">Services</h5>
+              <ul>
+                <li class="mb-4">
+                  <a href="#" class="text-gray-200 hover:text-white">Help center</a>
+                </li>
+                <li class="mb-4">
+                  <a href="#" class="text-gray-200 hover:text-white">Order tracking</a>
+                </li>
+                <li class="mb-4">
+                  <a href="#" class="text-gray-200 hover:text-white">Return & refund</a>
+                </li>
+                <li class="mb-4">
+                  <a href="#" class="text-gray-200 hover:text-white">Contact us</a>
+                </li>
+                <li class="mb-4">
+                  <a href="#" class="text-gray-200 hover:text-white">FAQ</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="flex flex-1 justify-center">
+            <div>
+              <h5 class="mb-5 text-xl font-semibold text-white">Maynooth</h5>
+              <ul>
+                <li class="mb-4">
+                  <a href="#" class="text-gray-200 hover:text-white">About us</a>
+                </li>
+                <li class="mb-4">
+                  <a href="#" class="text-gray-200 hover:text-white">Privacy policy</a>
+                </li>
+                <li class="mb-4">
+                  <a href="#" class="text-gray-200 hover:text-white">Terms & conditions</a>
+                </li>
+                <li class="mb-4">
+                  <a href="#" class="text-gray-200 hover:text-white">Career</a>
+                </li>
+                <li class="mb-4">
+                  <a href="#" class="text-gray-200 hover:text-white">Blog</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="flex flex-1 justify-center">
+            <div>
+              <h5 class="mb-5 text-xl font-semibold text-white">Follow us</h5>
+              <ul>
+                <li class="mb-4 flex">
+                  <a href="#" class="group inline-flex gap-3 text-gray-200 hover:text-white">
+                    <img src="assets/img/icons/facebook.svg" alt="Facebook" height="24" width="24" class="group-hover:brightness-200" />
+                    <span>Facebook</span>
+                  </a>
+                </li>
+                <li class="mb-4 flex">
+                  <a href="#" class="group inline-flex gap-3 text-gray-200 hover:text-white">
+                    <img src="assets/img/icons/instagram.svg" alt="Instagram" height="24" width="24" class="group-hover:brightness-200" />
+                    <span>Instagram</span>
+                  </a>
+                </li>
+                <li class="mb-4 flex">
+                  <a href="#" class="group inline-flex gap-3 text-gray-200 hover:text-white">
+                    <img src="assets/img/icons/twitter.svg" alt="Twitter" height="24" width="24" class="group-hover:brightness-200" />
+                    <span>Twitter</span>
+                  </a>
+                </li>
+                <li class="mb-4 flex">
+                  <a href="#" class="group inline-flex gap-3 text-gray-200 hover:text-white">
+                    <img src="assets/img/icons/youtube.svg" alt="YouTube" height="24" width="24" class="group-hover:brightness-200" />
+                    <span>YouTube</span>
+                  </a>
+                </li>
+                <li class="mb-4 flex">
+                  <a href="#" class="group inline-flex gap-3 text-gray-200 hover:text-white">
+                    <img src="assets/img/icons/tiktok.svg" alt="TikTok" height="24" width="24" class="group-hover:brightness-200" />
+                    <span>TikTok</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="mt-20 flex items-center justify-between">
+          <span class="text-sm">© 2023 Maynooth. All Rights Reserved.</span>
+          <div class="flex rounded-lg bg-white/10">
+            <button class="rounded-lg bg-white px-3 py-1.5 text-xs font-bold text-gray-950">English</button>
+            <button class="rounded-lg px-3 py-1.5 text-xs font-semibold text-white">Indonesia</button>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,122 @@
+{% extends "layouts/main.html" %}
+
+<!-- prettier-ignore -->
+{% import "macros/nav.html" as nav %}
+{% import "macros/card.html" as card %}
+{% import "macros/carousel.html" as carousel %}
+
+<!-- prettier-ignore -->
+{% block content %}
+{{ nav.main("hidden lg:block") }}
+{{ nav.cart() }}
+
+<main class="pb-32 pt-24 lg:pb-16 lg:pt-20">
+  <div class="container grid grid-cols-12 gap-x-6 pt-6 lg:pt-11">
+    <div class="col-span-12">
+      <div class="mb-2 flex items-start lg:mb-0 lg:gap-6">
+        <div class="w-full lg:w-8/12">
+          <div class="fixed inset-x-0 top-14 z-10 border-b border-gray-200 bg-white lg:static lg:top-auto lg:z-0 lg:mb-6">
+            <div class="container flex justify-between pb-4 lg:px-0">
+              <label>
+                <input type="checkbox" name="select-all" class="mb-0.5 rounded border-gray-300" />
+                <span class="ml-2 text-xs font-bold lg:text-sm">Select all</span>
+              </label>
+              <button class="text-xs font-bold disabled:text-gray-400 lg:text-sm" disabled>Remove</button>
+            </div>
+          </div>
+          <div>
+            {% for product in products %}
+            <div class="mb-6">
+              <div class="mb-3 flex w-full items-center gap-3">
+                <input type="checkbox" name="select-item" class="rounded border-gray-300" {{ 'checked' if product.selected }} />
+                <a href="product-details.html" class="shrink-0">
+                  <img src="{{ product.image }}" alt="{{ product.name }}" class="aspect-square h-14 w-14 rounded-lg sm:h-20 sm:w-20" />
+                </a>
+                <div>
+                  <a href="product-details.html" class="mb-1 line-clamp-1 text-sm font-bold sm:text-lg">{{ product.name }}</a>
+                  <div class="truncate text-xs font-bold sm:text-base">{{ product.price }}</div>
+                  {% if product.hasDiscount %}
+                  <div class="mb-0.5 flex items-center gap-1 sm:mb-1 sm:gap-2">
+                    <div class="truncate text-xs font-medium text-gray-700 line-through sm:text-sm">{{ product.priceInitial }}</div>
+                    <span class="rounded-md bg-green-200 px-1 py-0.5 text-xs font-bold text-green-950 sm:px-1.5 sm:text-sm">{{ product.discount }}</span>
+                  </div>
+                  {% endif %}
+                </div>
+              </div>
+              <div class="flex justify-between pl-7">
+                <button class="flex gap-1 rounded-lg border border-gray-300 p-1.5">
+                  {% if product.variant.text == 'White' %}
+                  <span class="material-symbols-rounded text-base/4 text-gray-300">circle</span>
+                  {% else %}
+                  <span class="{{ product.variant.color }} icon-filled material-symbols-rounded text-base/4">circle</span>
+                  {% endif %}
+                  <span class="ml-0.5 text-xs font-bold">{{ product.variant.text }}</span>
+                  <span class="material-symbols-rounded text-base/4">expand_more</span>
+                </button>
+                <div class="flex gap-3">
+                  <button class="flex rounded-lg border border-gray-300 p-1.5">
+                    <span class="material-symbols-rounded text-base/4">delete</span>
+                  </button>
+                  <div class="inline-flex rounded-lg border border-gray-300">
+                    <button class="flex p-1.5">
+                      <span class="material-symbols-rounded text-base/4">remove</span>
+                    </button>
+                    <input type="text" name="quantity" value="1" class="w-11 border-0 px-2 py-0 text-center" />
+                    <button class="flex p-1.5">
+                      <span class="material-symbols-rounded text-base/4">add</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="pb-6 lg:sticky lg:top-0 lg:w-4/12">
+          <div class="hidden lg:block">
+            <h5 class="mb-6 text-xl font-bold">Shopping summary</h5>
+            <div class="mb-6 text-sm">
+              {% for item in summary %}
+              <div class="mb-2 flex justify-between last:font-bold">
+                <span>{{ item.label }}</span>
+                <span>{{ item.value }}</span>
+              </div>
+              {% endfor %}
+            </div>
+            <button class="mb-6 flex w-full items-center rounded-xl border border-gray-300 py-2.5 pl-4 pr-3">
+              <span class="mr-auto text-sm font-bold">Payment method</span>
+              <span class="text-xs font-bold text-gray-600">{{ paymentMethod }}</span>
+              <span class="material-symbols-rounded text-xl/5">chevron_right</span>
+            </button>
+          </div>
+          <button class="group fixed inset-x-0 bottom-16 left-0 z-10 gap-3 bg-blue-950 py-3.5 text-white lg:static lg:w-full lg:rounded-xl">
+            <div class="container flex items-center justify-between lg:justify-center">
+              <div class="text-left font-bold lg:hidden">
+                <div class="text-xs font-medium text-white/80">{{ summary[4].label }}</div>
+                <div class="text-sm text-white">{{ summary[4].value }}</div>
+              </div>
+              <div class="relative pr-8">
+                <span class="text-base font-bold">Place order</span>
+                <span class="material-symbols-rounded absolute right-0 text-2xl/6 transition-all duration-300 group-hover:lg:-right-2">arrow_forward</span>
+              </div>
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-span-12 lg:mt-10">
+      <h5 class="mb-4 text-base font-bold lg:mb-6 lg:text-xl">Related products</h5>
+      <div class="grid grid-cols-2 gap-6 pb-6 sm:grid-cols-3 lg:grid-cols-4 lg:pb-0">
+        <!-- prettier-ignore -->
+        {% for product in global.products %}
+          {{ card.product(product) }}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- prettier-ignore -->
+{{ nav.mainBottom('cart') }} 
+
+{% endblock %}

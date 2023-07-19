@@ -1,3 +1,248 @@
 {
-  "appName": "Maynooth Furniture"
+  "appName": "Maynooth Furniture",
+  "nav": [
+    {
+      "name": "home",
+      "icon": "home",
+      "url": "index.html"
+    },
+    {
+      "name": "search",
+      "icon": "search"
+    },
+    {
+      "name": "cart",
+      "icon": "shopping_cart",
+      "url": "cart.html",
+      "hasBadge": true
+    },
+    {
+      "name": "wishlist",
+      "icon": "favorite"
+    },
+    {
+      "name": "profile",
+      "icon": "person"
+    }
+  ],
+  "userProfile": {
+    "name": "Ronald Richards",
+    "bio": "Lorem ipsum dolor sit amet consectetur. Vivamus congue odio risus tincidunt sed.",
+    "image": "@img/users/1.webp"
+  },
+  "menu": [
+    {
+      "title": "Orders",
+      "iconLeft": "receipt_long",
+      "iconRight": "chevron_right"
+    },
+    {
+      "title": "Wishlist",
+      "subtitle": "10 items",
+      "iconLeft": "favorite",
+      "iconRight": "chevron_right"
+    },
+    {
+      "title": "Reviews",
+      "iconLeft": "star",
+      "iconRight": "chevron_right"
+    },
+    {
+      "title": "Recently viewed",
+      "iconLeft": "history",
+      "iconRight": "chevron_right"
+    },
+    {
+      "title": "Account settings",
+      "iconLeft": "settings",
+      "iconRight": "chevron_right"
+    },
+    {
+      "title": "Help center",
+      "iconLeft": "help",
+      "iconRight": "chevron_right"
+    }
+  ],
+  "notifications": [
+    {
+      "title": "Christmas sale up to 70% off",
+      "subtitle": "Dictumst aliquam placerat praesent nibh. Id aenean mauris pulvinar adipiscing mi.",
+      "type": "Promotion",
+      "date": "21-12-2023 08:00"
+    },
+    {
+      "title": "Your order has arrived",
+      "subtitle": "Vitae elit sem sit eget nulla elit. Lorem lobortis tincidunt egestas luctus diam arcu feugiat libero.",
+      "type": "Order",
+      "date": "20-12-2023 11:00"
+    },
+    {
+      "title": "Your order is being delivered",
+      "subtitle": "Eu ac non at egestas. In faucibus convallis gravida diam metus tortor ut congue.",
+      "type": "Order",
+      "date": "20-12-2023 08:00"
+    },
+    {
+      "title": "Your order is ready to be delivered",
+      "subtitle": "Faucibus consequat enim donec nec. Elit venenatis sagittis a aliquam.",
+      "type": "Order",
+      "date": "20-12-2023 07:00"
+    },
+    {
+      "title": "Your order is being prepared",
+      "subtitle": "Consequat interdum nunc amet tellus adipiscing dui turpis. Feugiat id lacus vel egestas id turpis.",
+      "type": "Order",
+      "date": "19-12-2023 16:00"
+    },
+    {
+      "title": "25% special discount just for you",
+      "subtitle": "Sapien vel vel egestas ut. Nisl semper vitae egestas interdum.",
+      "type": "Promotion",
+      "date": "05-10-2023 12:00"
+    },
+    {
+      "title": "Complete your profile",
+      "subtitle": "Arcu congue in in vitae sed adipiscing. Ultricies fermentum nisl proin sapien senectus.",
+      "type": "Info",
+      "date": "24-09-2023 10:00"
+    }
+  ],
+  "search": {
+    "history": ["Sofa", "Bed", "Pillow", "Table", "Lamp"],
+    "suggestions": ["Knife", "Shoe racks", "Bathroom mirror", "Bed", "Table lamp", "Pillow", "Bookshelf", "Towel", "Napkins", "Clocks", "Mirrors"]
+  },
+  "products": [
+    {
+      "name": "Wooden Side Table",
+      "image": "@img/products/1.webp",
+      "hasDiscount": true,
+      "discount": "25%",
+      "priceInitial": "Rp 2.000.000",
+      "price": "Rp 1.500.000",
+      "hasRating": true,
+      "rating": "5.0",
+      "isLiked": true
+    },
+    {
+      "name": "Ceramic Cabinet",
+      "image": "@img/products/2.webp",
+      "hasDiscount": true,
+      "discount": "30%",
+      "priceInitial": "Rp 4.000.000",
+      "price": "Rp 2.800.000",
+      "hasRating": true,
+      "rating": "4.8",
+      "isLiked": false
+    },
+    {
+      "name": "Single Drawer Bedside Table",
+      "image": "@img/products/3.webp",
+      "hasDiscount": true,
+      "discount": "25%",
+      "priceInitial": "Rp 800.000",
+      "price": "Rp 600.000",
+      "hasRating": true,
+      "rating": "4.8",
+      "isLiked": false
+    },
+    {
+      "name": "Double Drawer Bedside Table",
+      "image": "@img/products/4.webp",
+      "hasDiscount": true,
+      "discount": "40%",
+      "priceInitial": "Rp 1.500.000",
+      "price": "Rp 900.000",
+      "hasRating": true,
+      "rating": "5.0",
+      "isLiked": true
+    },
+    {
+      "name": "Wall Mounted Lamp",
+      "image": "@img/products/5.webp",
+      "hasDiscount": true,
+      "discount": "25%",
+      "priceInitial": "Rp 1.000.000",
+      "price": "Rp 750.000",
+      "hasRating": true,
+      "rating": "4.9",
+      "isLiked": false
+    },
+    {
+      "name": "Wooden Coffee Table",
+      "image": "@img/products/6.webp",
+      "hasDiscount": true,
+      "discount": "30%",
+      "priceInitial": "Rp 2.000.000",
+      "price": "Rp 1.400.000",
+      "hasRating": true,
+      "rating": "4.8",
+      "isLiked": false
+    },
+    {
+      "name": "Solid Wood Coffee Table",
+      "image": "@img/products/7.webp",
+      "hasDiscount": true,
+      "discount": "15%",
+      "priceInitial": "Rp 3.000.000",
+      "price": "Rp 2.550.000",
+      "hasRating": true,
+      "rating": "4.9",
+      "isLiked": false
+    },
+    {
+      "name": "Long Dining Table",
+      "image": "@img/products/8.webp",
+      "hasDiscount": true,
+      "discount": "30%",
+      "priceInitial": "Rp 4.000.000",
+      "price": "Rp 2.800.000",
+      "hasRating": true,
+      "rating": "4.8",
+      "isLiked": false
+    },
+    {
+      "name": "Classic Chair",
+      "image": "@img/products/9.webp",
+      "hasDiscount": true,
+      "discount": "20%",
+      "priceInitial": "Rp 2.000.000",
+      "price": "Rp 1.600.000",
+      "hasRating": true,
+      "rating": "4.6",
+      "isLiked": false
+    },
+    {
+      "name": "Sofa Pillow",
+      "image": "@img/products/10.webp",
+      "hasDiscount": true,
+      "discount": "50%",
+      "priceInitial": "Rp 600.000",
+      "price": "Rp 300.000",
+      "hasRating": true,
+      "rating": "5.0",
+      "isLiked": false
+    },
+    {
+      "name": "Clay Vase",
+      "image": "@img/products/11.webp",
+      "hasDiscount": true,
+      "discount": "25%",
+      "priceInitial": "Rp 200.000",
+      "price": "Rp 150.000",
+      "hasRating": true,
+      "rating": "4.7",
+      "isLiked": true
+    },
+    {
+      "name": "White Ceramic Vase",
+      "image": "@img/products/12.webp",
+      "hasDiscount": true,
+      "discount": "30%",
+      "priceInitial": "Rp 400.000",
+      "price": "Rp 280.000",
+      "hasRating": true,
+      "rating": "4.9",
+      "isLiked": false
+    }
+  ]
 }

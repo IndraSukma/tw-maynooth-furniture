@@ -1,0 +1,64 @@
+{
+  "name": "Single Drawer Bedside Table",
+  "images": ["@img/products/3-md.webp", "@img/products/3-1-md.webp", "@img/products/3-2-md.webp", "@img/products/3-3-md.webp"],
+  "hasDiscount": true,
+  "discount": "25%",
+  "priceInitial": "Rp 800.000",
+  "price": "Rp 600.000",
+  "rating": "4.8",
+  "isLiked": false,
+  "sales": "100 sold",
+  "variations": [
+    {
+      "title": "color",
+      "items": [
+        {
+          "text": "Black",
+          "color": "text-black"
+        },
+        {
+          "text": "Gray",
+          "color": "text-gray-500"
+        },
+        {
+          "text": "White",
+          "color": "text-white"
+        }
+      ]
+    }
+  ],
+  "description": "<p>Lorem ipsum dolor sit amet consectetur. Purus orci amet laoreet laoreet hac elit. Morbi nisi condimentum proin elit nisi pellentesque nunc sit. Tortor condimentum praesent lobortis cras sed. Nisi leo sollicitudin nulla donec feugiat fringilla hac aliquam accumsan. Risus nulla purus habitant in purus.</p><p>Fusce duis vulputate sed ultrices. Tempus quis fringilla posuere malesuada leo quis platea tortor consectetur. Sapien turpis velit eros neque porta. At nulla ultricies quis posuere facilisis quis lacus gravida. In ullamcorper malesuada ut felis ipsum phasellus interdum quam mus. Nullam sed nunc eu gravida elementum.</p>",
+  "reviews": [
+    {
+      "user": {
+        "name": "Leslie Alexander",
+        "image": "@img/users/2.webp"
+      },
+      "date": "01-12-2023 17:00",
+      "variation": "White",
+      "rating": 5,
+      "body": "Lorem ipsum dolor sit amet consectetur. Suspendisse ac velit aliquam suscipit volutpat eget.",
+      "images": ["@img/products/3-3.webp", "@img/products/3-2.webp", "@img/products/3-1.webp", "@img/products/3.webp"]
+    },
+    {
+      "user": {
+        "name": "Jane Cooper",
+        "image": "@img/users/3.webp"
+      },
+      "date": "05-10-2023 12:00",
+      "variation": "Black",
+      "rating": 5,
+      "body": "A habitasse massa consequat dignissim ut enim quis eu. Ultrices fermentum quam volutpat malesuada congue et vestibulum eget diam."
+    },
+    {
+      "user": {
+        "name": "Jenny Wilson",
+        "image": "@img/users/4.webp"
+      },
+      "date": "24-09-2023 10:00",
+      "variation": "Gray",
+      "rating": 4,
+      "body": "Sit dapibus enim et donec. Et amet eget dictum vel facilisis risus porttitor auctor turpis."
+    }
+  ]
+}

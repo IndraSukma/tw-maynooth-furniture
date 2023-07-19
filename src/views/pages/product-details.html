@@ -1,0 +1,171 @@
+{% extends "layouts/main.html" %}
+
+<!-- prettier-ignore -->
+{% import "macros/nav.html" as nav %}
+{% import "macros/card.html" as card %}
+{% import "macros/modal.html" as modal %}
+{% import "macros/carousel.html" as carousel %}
+
+<!-- prettier-ignore -->
+{% block headThirdParty %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+<script defer src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+{% endblock %}
+
+<!-- prettier-ignore -->
+{% block headCustom %}
+<script defer src="@script/product-details.js"></script>
+{% endblock %}
+
+<!-- prettier-ignore -->
+{% block content %}
+{{ nav.main("hidden lg:block") }}
+
+<main>
+  <div class="relative">
+    {{ nav.productDetails() }}
+    <div class="mb-8 flex flex-wrap items-start gap-x-6 sm:container sm:pt-16 lg:mb-16 lg:pt-0">
+      <!-- prettier-ignore -->
+      <div class="w-full lg:w-7/12 lg:pt-32 lg:mb-16">
+        {{ carousel.product("product-images", "product-thumbnail", images) }}
+      </div>
+      <div class="mb-4 w-full pt-6 lg:sticky lg:top-0 lg:mb-0 lg:flex-1 lg:pt-32">
+        <div class="px-6 sm:px-0">
+          <h1 class="mb-3 line-clamp-2 text-xl font-bold lg:text-2xl">{{ name }}</h1>
+          <div class="truncate text-base font-bold lg:text-lg">{{ price }}</div>
+          {% if hasDiscount %}
+          <div class="flex items-center gap-1 lg:mb-2 lg:gap-2">
+            <div class="truncate text-sm font-medium text-gray-700 line-through lg:text-base">{{ priceInitial }}</div>
+            <span class="rounded-md bg-green-200 px-1.5 py-0.5 text-sm font-bold text-green-950">{{ discount }}</span>
+          </div>
+          {% endif %}
+          <div class="flex items-center justify-between pb-3 pt-4">
+            <div class="flex items-center">
+              <span class="mr-3 border-r border-gray-200 pr-3.5 text-sm font-bold text-gray-700">{{ sales }}</span>
+              <div class="inline-flex gap-1">
+                <span class="icon-filled material-symbols-rounded text-xl/5 text-yellow-950">star</span>
+                <span class="text-sm font-bold text-gray-700">{{ rating }}</span>
+              </div>
+            </div>
+            <div class="flex gap-4">
+              <a href="#" class="flex">
+                <span class="material-symbols-rounded text-xl/5">favorite</span>
+              </a>
+              <a href="#" class="flex">
+                <span class="material-symbols-rounded text-xl/5">share</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="relative block pb-4 pl-6 pr-5 pt-3 sm:px-0">
+          <button class="absolute inset-0 lg:hidden" x-data @click="$store.modalProduct.open('variation')"></button>
+          <div class="mb-4 flex items-center justify-between">
+            <span class="text-base font-bold lg:text-lg">Select variation</span>
+            <small class="ml-1 mr-auto text-sm/6 font-medium text-gray-700 lg:ml-2">(3 colors)</small>
+            <span class="material-symbols-rounded text-xl/5 lg:hidden">chevron_right</span>
+          </div>
+          {% for variation in variations %}
+          <div class="{{ 'hidden lg:block' if loop.index > 1 }} lg:mb-3">
+            <div class="mb-2 hidden text-sm font-bold lg:block">{{ variation.title | capitalize }}</div>
+            <div class="flex flex-wrap gap-2">
+              {% for item in variation.items %}
+              <label class="cursor-pointer">
+                <input type="radio" name="color" value="{{ item.text }}" class="peer hidden" />
+                <div class="flex items-center gap-1.5 rounded-lg bg-gray-100 px-2.5 py-1.5 text-xs font-bold peer-checked:ring-2 peer-checked:ring-blue-950">
+                  <span class="{{ item.color }} icon-filled material-symbols-rounded text-base/4">circle</span>
+                  <span>{{ item.text }}</span>
+                </div>
+              </label>
+              {% endfor %}
+            </div>
+          </div>
+          {% endfor %}
+          <div class="hidden lg:block">
+            <div class="mb-2 text-sm font-bold">Quantity</div>
+            <div class="inline-flex rounded-lg border border-gray-300">
+              <button class="flex p-1.5">
+                <span class="material-symbols-rounded text-base/4">remove</span>
+              </button>
+              <input type="text" name="quantity" value="1" class="w-11 border-0 px-2 py-0 text-center" />
+              <button class="flex p-1.5">
+                <span class="material-symbols-rounded text-base/4">add</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="hidden pt-4 lg:flex lg:gap-3">
+          <button class="flex justify-center gap-2 rounded-xl border border-gray-300 p-2.5 lg:flex-1">
+            <span class="material-symbols-rounded text-xl/5">add_shopping_cart</span>
+            <span class="text-sm font-bold">Add to cart</span>
+          </button>
+          <button class="flex-1 rounded-xl bg-gray-950 p-2.5 text-sm font-bold text-white">Buy now</button>
+        </div>
+      </div>
+      <div class="mb-8 w-full px-6 sm:px-0 lg:mb-16 lg:w-7/12">
+        <h5 class="mb-4 text-base font-bold lg:mb-6 lg:text-xl">Description</h5>
+        <div class="prose prose-sm prose-slate lg:prose-base">{{ description | safe }}</div>
+        <div class="pt-3 text-center lg:pt-5">
+          <a href="#" class="inline-flex items-center gap-1 font-bold">
+            <span class="mb-0.5 text-sm lg:text-base/4">View more</span>
+            <span class="material-symbols-rounded text-xl/5 lg:text-2xl/6">expand_more</span>
+          </a>
+        </div>
+      </div>
+      <div class="w-full px-6 sm:px-0 lg:w-7/12">
+        <h5 class="mb-4 text-base font-bold lg:mb-6 lg:text-xl">Reviews</h5>
+        <div>
+          {% for review in reviews %}
+          <div class="mb-5 lg:mb-6">
+            <div class="mb-2.5 flex items-center gap-2 lg:mb-3 lg:gap-3">
+              <img src="{{ review.user.image }}" alt="{{ review.user.name }}" class="h-6 w-6 rounded-full lg:h-8 lg:w-8" />
+              <span class="mb-0.5 text-sm font-bold lg:text-base">{{ review.user.name }}</span>
+              <span class="ml-auto text-xs font-medium text-gray-600">{{ review.date }}</span>
+            </div>
+            <div>
+              {% for i in range(0, 5) %}
+              <span class="{{ 'text-yellow-950' if loop.index <= review.rating else 'text-gray-200' }} icon-filled material-symbols-rounded text-base/4 lg:text-xl/5">star</span>
+              {% endfor %}
+            </div>
+            <div class="mb-2 text-xs font-bold text-gray-600 lg:mb-3 lg:mt-1 lg:text-sm">Variation: {{ review.variation }}</div>
+            <div class="text-sm lg:text-base">{{ review.body }}</div>
+          </div>
+          {% endfor %}
+        </div>
+        <div class="text-center">
+          <a href="#" class="inline-flex items-center gap-1 font-bold">
+            <span class="mb-0.5 text-sm lg:text-base/4">View all reviews</span>
+            <span class="material-symbols-rounded text-xl/5 lg:text-2xl/6">chevron_right</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container grid grid-cols-12 pb-16">
+    <div class="col-span-12">
+      <h5 class="mb-4 text-base font-bold lg:mb-6 lg:text-xl">Related products</h5>
+      <div class="grid grid-cols-2 gap-6 pb-6 sm:grid-cols-3 lg:grid-cols-4 lg:pb-0">
+        <!-- prettier-ignore -->
+        {% for product in global.products %}
+          {{ card.product(product) }}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- prettier-ignore -->
+{{ 
+  modal.product({
+    "name": name,
+    "images": images,
+    "hasDiscount": hasDiscount,
+    "discount": discount,
+    "priceInitial": priceInitial,
+    "price": price,
+    "variations": variations
+  }) 
+}} 
+{{ nav.addToCart() }} 
+
+{% endblock %}
