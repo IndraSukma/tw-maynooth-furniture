@@ -2,6 +2,8 @@
 
 Furniture E-Commerce
 
+[Preview](https://indrasukma.github.io/tw-maynooth-furniture/)
+
 ## Installation
 
 ```
