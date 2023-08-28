@@ -1,6 +1,6 @@
 # tw-maynooth-furniture
 
-Furniture E-Commerce
+Furniture E-Commerce built with TailwindCSS and AlpineJS
 
 [Preview](https://indrasukma.github.io/tw-maynooth-furniture/)
 
